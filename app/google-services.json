@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "141913626214",
+    "project_id": "student-theses",
+    "storage_bucket": "student-theses.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141913626214:android:d0f0e09840d5e2a69c3fa7",
+        "android_client_info": {
+          "package_name": "com.sklerbidi.therapistmobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141913626214-28kdgucq1fb3hu73g0l7l8k69nfm0jfb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sklerbidi.therapistmobileapp",
+            "certificate_hash": "2cabec35c196414fa210ad19cbf6f8feb383b445"
+          }
+        },
+        {
+          "client_id": "141913626214-cqq9jolupjffst3suvlk7mdavbuc1faq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9w47N45jEFTjP0pM7rTWs8CUyHs9HkYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141913626214-cqq9jolupjffst3suvlk7mdavbuc1faq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

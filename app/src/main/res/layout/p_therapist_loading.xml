@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/loading_bg"
+    tools:context=".Patient.PTherapistLoadingActivity">
+
+    <LinearLayout
+        style="@style/linear_layout_vertical">
+
+        <TextView
+            style="@style/text_size_3_bold"
+            android:textColor="@color/white"
+            android:text="iPAIN" />
+
+        <ImageView
+            android:background="@drawable/edit_text_background_gray"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:layout_gravity="center"
+            android:layout_width="200dp"
+            android:layout_height="200dp">
+
+        </ImageView>
+
+        <TextView
+            style="@style/text_size_2_bold"
+            android:textColor="@color/white"
+            android:text="Pangalan A. Name" />
+
+        <ImageView
+            android:background="@drawable/edit_text_background_gray"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+
+        </ImageView>
+
+        <TextView
+            style="@style/text_size_1_italic"
+            android:textColor="@color/white"
+            android:text="(Please wait while we load your data)" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

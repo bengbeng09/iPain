@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Dialog.TDialogAddPatient">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:layout_width="30dp"
+            android:paddingLeft="7dp"
+            android:id="@+id/btn_back"
+            android:drawableEnd="@drawable/ic_baseline_arrow_back_ios_24"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_height="30dp"/>
+
+        <TextView
+            style="@style/title_text"
+            android:textAlignment="textStart"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="2dp"
+            android:textSize="18sp"
+            android:text="ADD PATIENT"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/linear_layout_vertical"
+        android:paddingBottom="40dp"
+        android:layout_height="wrap_content">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_patient_name"
+            style="@style/edit_text_outlined"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginEnd="17dp"
+            android:paddingLeft="10dp"
+            android:layout_gravity="center_horizontal"
+            android:hint="Patient Name/ID" />
+
+        <Button
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="70dp"
+            style="@style/button"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/btn_confirm"
+            android:text="CONFIRM"/>
+
+    </LinearLayout>
+
+</LinearLayout>

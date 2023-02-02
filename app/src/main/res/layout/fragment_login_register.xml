@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginRegister.RegisterFragment">
+
+    <LinearLayout
+        android:id="@+id/login_2"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            style="@style/button_back"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/btn_back1"/>
+
+        <LinearLayout
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/text_size_2_bold"
+                android:layout_marginBottom="20dp"
+                android:text="SIGN UP" />
+
+            <TextView
+                style="@style/text_size_1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="5dp"
+                android:textAlignment="textStart"
+                android:text="I am a:"/>
+
+            <Spinner
+                android:id="@+id/spinner_user"
+                style="@style/edit_text_outlined"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+            <Button
+                style="@style/button"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:id="@+id/btn_next1"
+                android:text="NEXT"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/login_3"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            style="@style/button_back"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/btn_back2"/>
+
+        <LinearLayout
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/text_size_2_bold"
+                android:layout_marginBottom="20dp"
+                android:text="SIGN UP" />
+
+            <TextView
+                style="@style/text_size_0"
+                android:textAlignment="textStart"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:text="Last Name:"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_last_name"
+                style="@style/edit_text_outlined"
+                android:paddingLeft="10dp"
+                android:layout_gravity="center_horizontal"
+                android:tooltipText="Username" />
+
+            <TextView
+                style="@style/text_size_0"
+                android:textAlignment="textStart"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:text="First Name:"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_first_name"
+                style="@style/edit_text_outlined"
+                android:paddingLeft="10dp"
+                android:layout_gravity="center_horizontal"
+                android:tooltipText="Username" />
+
+            <TextView
+                style="@style/text_size_0"
+                android:textAlignment="textStart"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:text="Middle Name/Initial:"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_middle_name"
+                style="@style/edit_text_outlined"
+                android:paddingLeft="10dp"
+                android:layout_gravity="center_horizontal"
+                android:tooltipText="Username" />
+
+            <TextView
+                style="@style/text_size_0"
+                android:textAlignment="textStart"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:text="Clinic Name:"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_clinic_name"
+                style="@style/edit_text_outlined"
+                android:paddingLeft="10dp"
+                android:layout_gravity="center_horizontal"
+                android:tooltipText="Username" />
+
+            <TextView
+                style="@style/text_size_0"
+                android:textAlignment="textStart"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:text="Email Address:"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_email_address"
+                style="@style/edit_text_outlined"
+                android:paddingLeft="10dp"
+                android:layout_gravity="center_horizontal"
+                android:tooltipText="Username" />
+
+            <Button
+                style="@style/button"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:id="@+id/btn_next2"
+                android:text="NEXT"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/login_4"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            style="@style/button_back"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/btn_back3"/>
+
+        <TextView
+            style="@style/text_size_2_bold"
+            android:layout_marginBottom="20dp"
+            android:text="SIGN UP" />
+
+        <TextView
+            style="@style/text_size_0"
+            android:textAlignment="textStart"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:text="Username:"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_signup_username"
+            style="@style/edit_text_outlined"
+            android:paddingLeft="10dp"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            style="@style/text_size_0"
+            android:textAlignment="textStart"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:text="Password:"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_signup_password1"
+            style="@style/edit_text_outlined"
+            android:paddingLeft="10dp"
+            android:inputType="textPassword"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            style="@style/text_size_0"
+            android:textAlignment="textStart"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:text="Re-enter Password:"/>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_signup_password2"
+            style="@style/edit_text_outlined"
+            android:paddingLeft="10dp"
+            android:inputType="textPassword"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <Button
+            style="@style/button"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="80dp"
+            android:id="@+id/btn_finish"
+            android:text="FINISH"/>
+
+    </LinearLayout>
+
+</LinearLayout>

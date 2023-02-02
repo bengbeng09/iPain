@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginRegister.LoginFragment">
+
+    <LinearLayout
+        android:id="@+id/login_1"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/text_size_2_bold"
+                android:layout_marginBottom="20dp"
+                android:text="LOGIN" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_username"
+                style="@style/edit_text_outlined"
+                android:paddingLeft="10dp"
+                android:layout_gravity="center_horizontal"
+                android:hint="Username" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_password"
+                style="@style/edit_text_outlined"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:inputType="textPassword"
+                android:layout_gravity="center_horizontal"
+                android:hint="Password" />
+
+            <TextView
+                style="@style/text_size_0_blue"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:text="Forgot Password?"/>
+
+            <Button
+                style="@style/button"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                android:id="@+id/btn_login"
+                android:text="LOGIN"/>
+
+            <TextView
+                android:id="@+id/tv_create_account"
+                style="@style/text_size_0_blue"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:textAlignment="center"
+                android:text="Create an account here"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
