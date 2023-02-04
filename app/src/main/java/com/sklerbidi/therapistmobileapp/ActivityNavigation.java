@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -22,7 +23,7 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
 
     public DrawerLayout drawerLayout;
     public static NavigationView navigationView;
-    String user_type = "";
+    public static String username, user_type;
     Bundle bundle;
 
     @Override
@@ -44,6 +45,7 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
 
         if (extras != null) {
             user_type = extras.getString("user_type");
+            username = extras.getString("username");
         }
 
         set_item(user_type);
@@ -51,10 +53,6 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
-        bundle = new Bundle();
-        bundle.putString("type", user_type);
-        getSupportFragmentManager().setFragmentResult("request_type", bundle);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MenuDashboard()).commit();
         navigationView.setCheckedItem(R.id.navigation_dashboard);
@@ -75,15 +73,10 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
                 nav_Menu.findItem(R.id.navigation_patients).setVisible(false);
                 break;
         }
-
-
     }
 
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        bundle = new Bundle();
-        bundle.putString("type", user_type);
-        getSupportFragmentManager().setFragmentResult("request_type", bundle);
 
         switch (item.getItemId()) {
 

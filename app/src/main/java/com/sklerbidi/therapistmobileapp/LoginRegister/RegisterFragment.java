@@ -75,6 +75,11 @@ public class RegisterFragment extends Fragment {
                                     databaseReference.child("users").child(username).child("email").setValue(email);
                                     databaseReference.child("users").child(username).child("password").setValue(password);
 
+                                    Random random = new Random();
+                                    String hex = Integer.toHexString(random.nextInt(16777216)).toUpperCase();
+                                    hex = String.format("%06x", Integer.parseInt(hex, 16));
+                                    databaseReference.child("users").child(username).child("user_code").setValue(hex.toUpperCase());
+
                                     toast("Registered Successfully");
 
                                     Fragment fragment= getParentFragmentManager().findFragmentByTag("login");

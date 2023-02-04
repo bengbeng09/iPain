@@ -24,6 +24,7 @@ public class TPatientSessionActivity extends AppCompatActivity {
     LinearLayout container_activity;
     TextView tv_session_name, tv_session_id;
     public Bundle getBundle = null;
+    String name = "", user_code = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,14 +34,15 @@ public class TPatientSessionActivity extends AppCompatActivity {
         findView();
 
         Bundle extras = getIntent().getExtras();
-        String name = "";
+
 
         if (extras != null) {
-            name = extras.getString("x");
+            name = extras.getString("first_name") + " " + extras.getString("last_name") ;
+            user_code = extras.getString("user_code");
         }
 
         tv_session_name.setText(name.toUpperCase());
-        tv_session_id.setText("123456");
+        tv_session_id.setText(user_code);
 
 
         getSupportFragmentManager().setFragmentResultListener("request_activity", this, new FragmentResultListener() {

@@ -4,22 +4,46 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.sklerbidi.therapistmobileapp.ActivityNavigation;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
+import com.sklerbidi.therapistmobileapp.LoginRegister.RegisterFragment;
 import com.sklerbidi.therapistmobileapp.R;
+import com.sklerbidi.therapistmobileapp.UserInfo;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 
 public class TDialogAddPatient extends AppCompatDialogFragment {
 
-    EditText et_patient_name;
     Button btn_back, btn_confirm;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://student-theses-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
+    ArrayList<UserInfo> users = new ArrayList<>();
+    AutoCompleteTextView et_patient_name;
+    ArrayAdapter<String> arrayAdapter;
+    String[] patients;
 
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -28,33 +52,126 @@ public class TDialogAddPatient extends AppCompatDialogFragment {
 
         findView(view);
 
-        btn_confirm.setOnClickListener(new View.OnClickListener() {
+
+        databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    String username = ds.getKey();
+                    String first_name = ds.child("first_name").getValue(String.class);
+                    String last_name = ds.child("last_name").getValue(String.class);
+                    String user_type = ds.child("user_type").getValue(String.class);
+                    String user_code = ds.child("user_code").getValue(Long.class).toString();
 
+                    if(user_type.equals("Clinic Patient")){
+                        UserInfo user = new UserInfo(username, first_name, last_name, user_type, user_code);
+                        users.add(user);
+                    }
+                }
 
-                if(LoginActivity.isNotEmpty(new String[]{et_patient_name.getText().toString()})){
-                    bundle.putString("name",et_patient_name.getText().toString());
-                    getParentFragmentManager().setFragmentResult("request_patient", bundle);
-                    getParentFragmentManager().beginTransaction().remove(TDialogAddPatient.this).commit();
-                }else{
-                    Toast.makeText(getActivity(), "Enter patient Name/ID",
-                            Toast.LENGTH_LONG).show();
+                patients = new String[users.size()];
+                for (int i = 0; i < users.size(); i++) {
+                    UserInfo user = users.get(i);
+                    patients[i] = cap(user.getFirst_name()) + " " + cap(user.getLast_name()) + " (" + user.getUser_code().toUpperCase() + ") ";
+                }
+
+                if(patients != null){
+                    arrayAdapter = new ArrayAdapter<String>(getContext(), R.layout.layout_list_item, patients);
+                    et_patient_name.setAdapter(arrayAdapter);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        et_patient_name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (arrayAdapter.getPosition(et_patient_name.getText().toString()) < 0) {
+                    et_patient_name.setError("Patient not found");
+                } else {
+                    et_patient_name.setError(null);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().isEmpty()) {
+                    et_patient_name.setError(null);
                 }
             }
         });
 
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getParentFragmentManager().beginTransaction().remove(TDialogAddPatient.this).commit();
+        btn_confirm.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+
+            if(LoginActivity.isNotEmpty(new String[]{et_patient_name.getText().toString()})){
+
+                String input = et_patient_name.getText().toString();
+                String userCode = "";
+                if (input.contains("(") && input.contains(")")) {
+                    userCode = input.substring(input.indexOf("(") + 1, input.indexOf(")"));
+
+                    if (!userCode.isEmpty()) {
+                        long code = Long.parseLong(userCode);
+                        databaseReference.child("users").orderByChild("user_code").equalTo(code)
+                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        if (dataSnapshot.exists()) {
+                                            String username = dataSnapshot.getChildren().iterator().next().getKey();
+                                            bundle.putString("username",username);
+                                            getParentFragmentManager().setFragmentResult("request_patient", bundle);
+
+                                            getParentFragmentManager().beginTransaction().remove(TDialogAddPatient.this).commit();
+
+                                        } else {
+                                            Toast.makeText(getActivity(), "Patient not found", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                        // Handle error here
+                                    }
+                                });
+                    } else {
+                        Toast.makeText(getActivity(), "Invalid patient Name/ID", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else {
+                    Toast.makeText(getActivity(), "Invalid patient Name/ID", Toast.LENGTH_SHORT).show();
+                }
+            }else{
+                Toast.makeText(getActivity(), "Enter patient Name/ID",
+                        Toast.LENGTH_SHORT).show();
             }
         });
+
+        btn_back.setOnClickListener(v -> getParentFragmentManager().beginTransaction().remove(TDialogAddPatient.this).commit());
 
         builder.setView(view);
         return builder.create();
     }
+
+    public String cap(String originalString) {
+        String[] words = originalString.split(" ");
+        StringBuilder capitalizedString = new StringBuilder();
+        for (String word : words) {
+            capitalizedString.append(word.substring(0, 1).toUpperCase() + word.substring(1) + " ");
+        }
+        return capitalizedString.toString().trim();
+    }
+
 
     public void findView(View view){
         et_patient_name = view.findViewById(R.id.et_patient_name);

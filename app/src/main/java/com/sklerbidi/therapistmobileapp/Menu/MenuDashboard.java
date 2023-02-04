@@ -7,12 +7,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.sklerbidi.therapistmobileapp.ActivityNavigation;
 import com.sklerbidi.therapistmobileapp.R;
 
 public class MenuDashboard extends Fragment {
@@ -33,29 +35,25 @@ public class MenuDashboard extends Fragment {
         View view = inflater.inflate(R.layout.menu_dashboard, container, false);
 
         findView(view);
-
-        getParentFragmentManager().setFragmentResultListener("request_type", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
-                String user_type = bundle.getString("type");
-                switch (user_type){
-                    case "Regular User":
-                        container_therapist.setVisibility(View.GONE);
-                        container_patient.setVisibility(View.GONE);
-                        break;
-                    case "Clinic Therapist":
-                        container_therapist.setVisibility(View.VISIBLE);
-                        container_patient.setVisibility(View.GONE);
-                        break;
-                    case "Clinic Patient":
-                        container_therapist.setVisibility(View.GONE);
-                        container_patient.setVisibility(View.VISIBLE);
-                        break;
-                }
-            }
-        });
-
+        set_dashboard();
         return view;
+    }
+
+    private void set_dashboard(){
+        switch (ActivityNavigation.user_type){
+            case "Regular User":
+                container_therapist.setVisibility(View.GONE);
+                container_patient.setVisibility(View.GONE);
+                break;
+            case "Clinic Therapist":
+                container_therapist.setVisibility(View.VISIBLE);
+                container_patient.setVisibility(View.GONE);
+                break;
+            case "Clinic Patient":
+                container_therapist.setVisibility(View.GONE);
+                container_patient.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 
     public void toast(String toast){
