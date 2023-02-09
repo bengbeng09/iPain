@@ -18,22 +18,22 @@
             android:text="iPAIN" />
 
         <ImageView
-            android:background="@drawable/edit_text_background_gray"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="40dp"
             android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_account_circle_24"
             android:layout_width="200dp"
-            android:layout_height="200dp">
+            android:layout_height="200dp"/>
 
-        </ImageView>
 
         <TextView
+            android:id="@+id/tv_loading_therapist_name"
             style="@style/text_size_2_bold"
             android:textColor="@color/white"
             android:text="Pangalan A. Name" />
 
         <ImageView
-            android:background="@drawable/edit_text_background_gray"
+            android:visibility="gone"
             android:layout_marginTop="70dp"
             android:layout_marginBottom="20dp"
             android:layout_gravity="center"

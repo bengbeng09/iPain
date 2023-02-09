@@ -10,4 +10,6 @@
     <color name="header">#53A3D8</color>
     <color name="red_text">#FF0D0D</color>
     <color name="loading_bg">#79C5F6</color>
+    <color name="remove_btn">#FF9494</color>
+    <color name="notes">#FFDF8C</color>
 </resources>

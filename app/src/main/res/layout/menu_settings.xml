@@ -1,9 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/linear_layout_vertical"
     tools:context=".Menu.MenuSettings">
 
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        style="@style/linear_layout_horizontal">
 
-</FrameLayout>
+        <TextView
+            style="@style/text_size_1.5"
+            android:textAlignment="textStart"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="NAME"/>
+
+        <TextView
+            style="@style/text_size_1.5"
+            android:id="@+id/tv_name"
+            android:textAlignment="textEnd"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="XXX"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        style="@style/linear_layout_horizontal">
+
+        <TextView
+            style="@style/text_size_1.5"
+            android:textAlignment="textStart"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="USER ID"/>
+
+        <TextView
+            style="@style/text_size_1.5"
+            android:id="@+id/tv_id"
+            android:textAlignment="textEnd"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="XXX"/>
+
+    </LinearLayout>
+
+
+    <Button
+        style="@style/button"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="30dp"
+        android:id="@+id/btn_logout"
+        android:backgroundTint="@color/remove_btn"
+        android:text="LOGOUT"/>
+
+</LinearLayout>

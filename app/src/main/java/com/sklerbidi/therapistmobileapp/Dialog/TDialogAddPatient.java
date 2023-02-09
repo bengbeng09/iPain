@@ -52,16 +52,15 @@ public class TDialogAddPatient extends AppCompatDialogFragment {
 
         findView(view);
 
-
         databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
-                    String username = ds.getKey();
+                    String user_code = ds.getKey();
                     String first_name = ds.child("first_name").getValue(String.class);
                     String last_name = ds.child("last_name").getValue(String.class);
                     String user_type = ds.child("user_type").getValue(String.class);
-                    String user_code = ds.child("user_code").getValue(Long.class).toString();
+                    String username = ds.child("username").getValue(String.class);
 
                     if(user_type.equals("Clinic Patient")){
                         UserInfo user = new UserInfo(username, first_name, last_name, user_type, user_code);
@@ -115,25 +114,29 @@ public class TDialogAddPatient extends AppCompatDialogFragment {
             Bundle bundle = new Bundle();
 
             if(LoginActivity.isNotEmpty(new String[]{et_patient_name.getText().toString()})){
-
                 String input = et_patient_name.getText().toString();
                 String userCode = "";
+
                 if (input.contains("(") && input.contains(")")) {
                     userCode = input.substring(input.indexOf("(") + 1, input.indexOf(")"));
 
                     if (!userCode.isEmpty()) {
-                        long code = Long.parseLong(userCode);
-                        databaseReference.child("users").orderByChild("user_code").equalTo(code)
+                        databaseReference.child("users").child(userCode)
                                 .addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         if (dataSnapshot.exists()) {
-                                            String username = dataSnapshot.getChildren().iterator().next().getKey();
-                                            bundle.putString("username",username);
-                                            getParentFragmentManager().setFragmentResult("request_patient", bundle);
-
-                                            getParentFragmentManager().beginTransaction().remove(TDialogAddPatient.this).commit();
-
+                                            String user_code = dataSnapshot.getKey();
+                                            if (user_code != null){
+                                                DataSnapshot userSnapshot = dataSnapshot.child(user_code);
+                                                String username = userSnapshot.child("username").getValue(String.class);
+                                                bundle.putString("user_code",user_code);
+                                                bundle.putString("username",username);
+                                                getParentFragmentManager().setFragmentResult("request_patient", bundle);
+                                                getParentFragmentManager().beginTransaction().remove(TDialogAddPatient.this).commit();
+                                            }else{
+                                                Toast.makeText(getActivity(), "Unknown Error", Toast.LENGTH_SHORT).show();
+                                            }
                                         } else {
                                             Toast.makeText(getActivity(), "Patient not found", Toast.LENGTH_SHORT).show();
                                         }
@@ -147,7 +150,6 @@ public class TDialogAddPatient extends AppCompatDialogFragment {
                     } else {
                         Toast.makeText(getActivity(), "Invalid patient Name/ID", Toast.LENGTH_SHORT).show();
                     }
-
                 } else {
                     Toast.makeText(getActivity(), "Invalid patient Name/ID", Toast.LENGTH_SHORT).show();
                 }

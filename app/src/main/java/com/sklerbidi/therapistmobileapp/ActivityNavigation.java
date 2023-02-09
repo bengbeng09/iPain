@@ -23,7 +23,7 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
 
     public DrawerLayout drawerLayout;
     public static NavigationView navigationView;
-    public static String username, user_type;
+    public static String username, user_type, user_code,firstname, lastname;
     Bundle bundle;
 
     @Override
@@ -44,8 +44,11 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
+            user_code = extras.getString("user_code");
             user_type = extras.getString("user_type");
             username = extras.getString("username");
+            firstname = extras.getString("first_name");
+            lastname = extras.getString("last_name");
         }
 
         set_item(user_type);
@@ -105,5 +108,10 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Do nothing
     }
 }

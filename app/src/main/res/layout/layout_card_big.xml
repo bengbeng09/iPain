@@ -7,6 +7,7 @@
 
     <androidx.cardview.widget.CardView
         style="@style/card_view_square"
+        android:id="@+id/btn_card"
         app:cardCornerRadius="15sp"
         app:cardElevation="5dp"
         android:layout_marginBottom="20dp"

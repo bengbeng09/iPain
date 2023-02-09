@@ -54,12 +54,16 @@ public class TMenuPatients extends Fragment {
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
 
                 String patient_username = bundle.getString("username");
+                String patient_user_code = bundle.getString("user_code");
 
-                databaseReference.child("users").child(ActivityNavigation.username).child("patients").child(patient_username).addListenerForSingleValueEvent(new ValueEventListener() {
+                Log.wtf("wtf", patient_user_code);
+
+                databaseReference.child("users").child(ActivityNavigation.user_code).child("patients").child(patient_user_code).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (!snapshot.exists()) {
-                            databaseReference.child("users").child(ActivityNavigation.username).child("patients").child(patient_username).child("status").setValue("ongoing");
+                            databaseReference.child("users").child(ActivityNavigation.user_code).child("patients").child(patient_user_code).child("status").setValue("active");
+                            databaseReference.child("users").child(patient_user_code).child("therapists").child(ActivityNavigation.user_code).child("status").setValue("active");
                             set_card();
                             Toast.makeText(getActivity(), "Patient added successfully", Toast.LENGTH_SHORT).show();
                         }else{
@@ -71,8 +75,6 @@ public class TMenuPatients extends Fragment {
 
                     }
                 });
-
-
 
             }
         });
@@ -91,29 +93,32 @@ public class TMenuPatients extends Fragment {
 
     private void set_card(){
         container_patient.removeAllViews();
-        databaseReference.child("users").child(ActivityNavigation.username).child("patients").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child("users").child(ActivityNavigation.user_code).child("patients").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
-                    String patient_username = ds.getKey();
+                    String patient_user_code = ds.getKey();
 
-                    databaseReference.child("users").child(patient_username).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(patient_user_code != null){
+                        databaseReference.child("users").child(patient_user_code).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            String first_name = snapshot.child("first_name").getValue(String.class);
-                            String last_name = snapshot.child("last_name").getValue(String.class);
-                            String user_code = snapshot.child("user_code").getValue(Long.class).toString();
+                                String first_name = snapshot.child("first_name").getValue(String.class);
+                                String last_name = snapshot.child("last_name").getValue(String.class);
 
-                            add_card(first_name, last_name, user_code);
+                                if (first_name != null && last_name != null) {
+                                    add_card(first_name, last_name, patient_user_code);
+                                }
 
-                        }
+                            }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                            // Handle error here
-                        }
-                    });
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                // Handle error here
+                            }
+                        });
+                    }
 
                 }
 
@@ -137,19 +142,17 @@ public class TMenuPatients extends Fragment {
         String cardDetails = firstname.toUpperCase() + " " + lastname.toUpperCase();
         nameView.setText(cardDetails);
 
-        show.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), TPatientSessionActivity.class);
-                intent.putExtra("first_name", firstname);
-                intent.putExtra("last_name", lastname);
-                intent.putExtra("user_code", user_code);
-                startActivity(intent);
-            }
+        show.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), TPatientSessionActivity.class);
+            intent.putExtra("first_name", firstname);
+            intent.putExtra("last_name", lastname);
+            intent.putExtra("user_code", user_code);
+            startActivity(intent);
         });
 
         container_patient.addView(view);
     }
+
 
     public void findView(View view){
         add_patient = view.findViewById(R.id.btn_add_patient);

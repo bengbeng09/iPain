@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
 import com.sklerbidi.therapistmobileapp.R;
 
@@ -21,6 +23,7 @@ public class MenuDashboard extends Fragment {
 
     LinearLayout container_therapist;
     LinearLayout container_patient;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://student-theses-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

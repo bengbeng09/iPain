@@ -14,6 +14,7 @@
 
     <string name="therapist_session_1">Kindly provide the code given to you by the therapist at your clinic visit below, to easily access your session.</string>
     <string name="therapist_session_2">ENTER THERAPIST CODE</string>
+    <string name="link">Click link below for full tutorial</string>
 
 
 </resources>

@@ -21,7 +21,7 @@
             android:name=".Patient.PTherapistSessionActivity"
             android:exported="false" />
         <activity
-            android:name=".Patient.PTherapistsActivity"
+            android:name=".Patient.PTasksActivity"
             android:exported="false" />
         <activity
             android:name=".Therapist.TPatientSessionActivity"

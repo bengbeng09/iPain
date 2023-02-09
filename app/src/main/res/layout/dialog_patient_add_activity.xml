@@ -140,10 +140,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_notes"
                     style="@style/edit_text_outlined_gray"
+                    android:paddingTop="10dp"
                     android:paddingLeft="10dp"
                     android:layout_height="200dp"
+                    android:gravity="top|start"
                     android:layout_marginBottom="40dp"
-                    android:layout_gravity="center_horizontal"
                     android:tooltipText="Username" />
 
             </LinearLayout>

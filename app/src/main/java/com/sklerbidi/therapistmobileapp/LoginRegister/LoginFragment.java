@@ -34,76 +34,88 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view =  inflater.inflate(R.layout.fragment_login_main, container, false);
 
         findView(view);
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btn_login.setOnClickListener(view1 -> {
 
+            final String username = et_username.getText().toString();
+            final String password = et_password.getText().toString();
 
-                final String username = et_username.getText().toString();
-                final String password = et_password.getText().toString();
+            if(LoginActivity.isNotEmpty(new String[]{username, password})){
+                databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if(LoginActivity.isNotEmpty(new String[]{username, password})){
-                    databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.hasChild(username)){
-                                final String get_password = snapshot.child(username).child("password").getValue(String.class);
-                                final String get_user_type = snapshot.child(username).child("user_type").getValue(String.class);
-                                final String get_first_name = snapshot.child(username).child("first_name").getValue(String.class);
-                                final String get_last_name = snapshot.child(username).child("last_name").getValue(String.class);
-                                if(get_password.equals(password)){
+                        boolean usernameExists = false;
+                        String user_code = "";
 
-                                    toast("Login successfully");
+                        for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                            String username_check = userSnapshot.child("username").getValue(String.class);
 
-                                    Intent intent = new Intent(getActivity(), ActivityNavigation.class);
-                                    intent.putExtra("username", username);
-                                    intent.putExtra("user_type", get_user_type);
-                                    intent.putExtra("first_name", get_first_name);
-                                    intent.putExtra("last_name", get_last_name);
-
-                                    startActivity(intent);
-
-                                    getActivity().finish();
-
-                                }else{
-                                    toast("Invalid Password");
-                                }
-                            }else{
-                                toast("Invalid Credentials");
+                            if (username_check != null && username_check.equals(username)) {
+                                user_code = userSnapshot.getKey();
+                                usernameExists = true;
+                                break;
                             }
                         }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                        if(usernameExists && user_code != null){
+                            final String get_password = snapshot.child(user_code).child("password").getValue(String.class);
+                            final String get_user_type = snapshot.child(user_code).child("user_type").getValue(String.class);
+                            final String get_first_name = snapshot.child(user_code).child("first_name").getValue(String.class);
+                            final String get_last_name = snapshot.child(user_code).child("last_name").getValue(String.class);
 
+                            if(get_password != null && get_password.equals(password)){
+
+                                toast("Login successfully");
+
+                                Intent intent = new Intent(getActivity(), ActivityNavigation.class);
+                                intent.putExtra("username", username);
+                                intent.putExtra("user_type", get_user_type);
+                                intent.putExtra("first_name", get_first_name);
+                                intent.putExtra("last_name", get_last_name);
+                                intent.putExtra("user_code", user_code);
+
+                                startActivity(intent);
+
+                                if (getActivity() != null) {
+                                    getActivity().finish();
+                                }
+
+                            }else{
+                                toast("Invalid Password");
+                            }
+                        }else{
+                            toast("Invalid Credentials");
                         }
-                    });
-                }else{
-                    toast("Do not leave any field blank");
-                }
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-
+                    }
+                });
+            }else{
+                toast("Do not leave any field blank");
             }
+
+
+
         });
 
-        tv_create_account.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                et_username.setText("");
-                et_password.setText("");
+        tv_create_account.setOnClickListener(v -> {
 
-                RegisterFragment registerFragment = new RegisterFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(((ViewGroup)getView().getParent()).getId(), registerFragment, "register")
-                        .addToBackStack(null)
-                        .commit();
-            }
+            et_username.setText("");
+            et_password.setText("");
+
+            RegisterFragment registerFragment = new RegisterFragment();
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(((ViewGroup)getView().getParent()).getId(), registerFragment, "register")
+                    .addToBackStack(null)
+                    .commit();
         });
 
         return view;

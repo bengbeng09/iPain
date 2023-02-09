@@ -39,6 +39,12 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textStyle">normal</item>
     </style>
+
+    <style name="text_size_1.5" parent="base_font_style">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
     <style name="text_size_1_italic" parent="base_font_style">
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">12sp</item>
@@ -49,6 +55,24 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text_size_2.5" parent="base_font_style">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="text_size_2.5_bold" parent="base_font_style">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text_size_2" parent="base_font_style">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">normal</item>
     </style>
 
     <style name="text_size_3_bold" parent="base_font_style">

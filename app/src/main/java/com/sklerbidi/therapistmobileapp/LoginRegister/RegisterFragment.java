@@ -57,44 +57,48 @@ public class RegisterFragment extends Fragment {
                 final String password = et_password.getText().toString();
                 final String reenter_password = et_reenter_password.getText().toString();
 
-                if(LoginActivity.isNotEmpty(new String[]{user_type,last_name, first_name, middle_name, clinic_name, email, username, password, reenter_password})){
-
+                if(LoginActivity.isNotEmpty(new String[]{user_type,last_name, first_name, middle_name, email, username, password, reenter_password})){
                     databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.hasChild(username)){
-                                toast("Username already exists");
-                            }else{
-                                if(password.equals(reenter_password)){
 
-                                    databaseReference.child("users").child(username).child("user_type").setValue(user_type);
-                                    databaseReference.child("users").child(username).child("last_name").setValue(last_name);
-                                    databaseReference.child("users").child(username).child("first_name").setValue(first_name);
-                                    databaseReference.child("users").child(username).child("middle_name").setValue(middle_name);
-                                    databaseReference.child("users").child(username).child("clinic_name").setValue(clinic_name);
-                                    databaseReference.child("users").child(username).child("email").setValue(email);
-                                    databaseReference.child("users").child(username).child("password").setValue(password);
-
-                                    Random random = new Random();
-                                    String hex = Integer.toHexString(random.nextInt(16777216)).toUpperCase();
-                                    hex = String.format("%06x", Integer.parseInt(hex, 16));
-                                    databaseReference.child("users").child(username).child("user_code").setValue(hex.toUpperCase());
-
-                                    toast("Registered Successfully");
-
-                                    Fragment fragment= getParentFragmentManager().findFragmentByTag("login");
-                                    if(fragment != null){
-                                        getActivity().getSupportFragmentManager().beginTransaction()
-                                                .replace(((ViewGroup)getView().getParent()).getId(), fragment)
-                                                .remove(RegisterFragment.this)
-                                                .commit();
-                                    }else{
-                                        toast("why?");
-                                    }
-
-                                }else{
-                                    toast("Password does not match");
+                            for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                                String username_check = userSnapshot.child("username").getValue(String.class);
+                                if (username_check != null && username_check.equals(username)) {
+                                    toast("Username already exists");
+                                    return;
                                 }
+                            }
+
+                            if(password.equals(reenter_password)){
+                                Random random = new Random();
+                                String hex = Integer.toHexString(random.nextInt(16777216)).toUpperCase();
+                                hex = String.format("%06x", Integer.parseInt(hex, 16));
+                                final String user_code = hex.toUpperCase();
+
+                                databaseReference.child("users").child(user_code).child("username").setValue(username);
+                                databaseReference.child("users").child(user_code).child("user_type").setValue(user_type);
+                                databaseReference.child("users").child(user_code).child("last_name").setValue(last_name);
+                                databaseReference.child("users").child(user_code).child("first_name").setValue(first_name);
+                                databaseReference.child("users").child(user_code).child("middle_name").setValue(middle_name);
+                                databaseReference.child("users").child(user_code).child("clinic_name").setValue(clinic_name);
+                                databaseReference.child("users").child(user_code).child("email").setValue(email);
+                                databaseReference.child("users").child(user_code).child("password").setValue(password);
+
+                                toast("Registered Successfully");
+
+                                Fragment fragment= getParentFragmentManager().findFragmentByTag("login");
+                                if(fragment != null){
+                                    getActivity().getSupportFragmentManager().beginTransaction()
+                                            .replace(((ViewGroup)getView().getParent()).getId(), fragment)
+                                            .remove(RegisterFragment.this)
+                                            .commit();
+                                }else{
+                                    toast("why?");
+                                }
+
+                            }else{
+                                toast("Password does not match");
                             }
                         }
 

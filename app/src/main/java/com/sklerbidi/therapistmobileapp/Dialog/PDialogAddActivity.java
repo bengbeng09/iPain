@@ -13,6 +13,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.FragmentResultListener;
 
 import android.provider.MediaStore;
 import android.view.View;
@@ -21,6 +22,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.sklerbidi.therapistmobileapp.ActivityNavigation;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
 
@@ -31,7 +38,9 @@ public class PDialogAddActivity extends AppCompatDialogFragment {
 
     private static final int PICK_IMAGE_REQUEST = 1001;
     EditText et_activity,et_repetition, et_hold, et_complete, et_link, et_therapist;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://student-theses-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
     ImageView image;
+    String user_code;
     Button btn_back, btn_confirm, btn_upload;
 
     @NonNull
@@ -42,6 +51,13 @@ public class PDialogAddActivity extends AppCompatDialogFragment {
 
         findView(view);
 
+        getParentFragmentManager().setFragmentResultListener("set_activity", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
+                user_code = bundle.getString("user_code");
+            }
+        });
+
         btn_upload.setOnClickListener(v -> {
             Intent intent = new Intent();
             intent.setType("image/*");
@@ -51,11 +67,24 @@ public class PDialogAddActivity extends AppCompatDialogFragment {
 
         btn_confirm.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
+            final String activity_name = et_activity.getText().toString();
+            final String activity_repetition = et_repetition.getText().toString();
+            final String activity_hold = et_hold.getText().toString();
+            final String activity_complete = et_complete.getText().toString();
+            final String activity_link = et_link.getText().toString();
+            final String activity_note = et_therapist.getText().toString();
 
-            if(LoginActivity.isNotEmpty(new String[]{et_activity.getText().toString()})){
-                bundle.putString("name",et_activity.getText().toString());
+            if(LoginActivity.isNotEmpty(new String[]{activity_name, activity_repetition, activity_hold, activity_complete, activity_link, activity_note})){
+
+                bundle.putString("a_name", activity_name);
+                bundle.putString("a_repetition", activity_repetition);
+                bundle.putString("a_hold", activity_hold);
+                bundle.putString("a_complete", activity_complete);
+                bundle.putString("a_link", activity_link);
+                bundle.putString("a_note", activity_note);
                 getParentFragmentManager().setFragmentResult("request_activity", bundle);
                 getParentFragmentManager().beginTransaction().remove(PDialogAddActivity.this).commit();
+
             }else{
                 Toast.makeText(getActivity(), "Fill up all fields",
                         Toast.LENGTH_LONG).show();

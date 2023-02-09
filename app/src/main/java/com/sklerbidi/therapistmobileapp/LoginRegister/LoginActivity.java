@@ -40,4 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+        // Do nothing
+    }
+
 }
