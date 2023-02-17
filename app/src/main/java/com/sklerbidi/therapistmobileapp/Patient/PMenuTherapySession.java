@@ -183,8 +183,6 @@ public class PMenuTherapySession extends Fragment {
 
         TextView nameView = view.findViewById(R.id.name);
         Button show = view.findViewById(R.id.btnView);
-        Button remove = view.findViewById(R.id.btnRemove);
-        remove.setVisibility(View.VISIBLE);
         String cardDetails = firstname.toUpperCase() + " " + lastname.toUpperCase();
         nameView.setText(cardDetails);
 

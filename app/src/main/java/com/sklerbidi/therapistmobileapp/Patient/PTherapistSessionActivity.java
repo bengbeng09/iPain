@@ -61,12 +61,21 @@ public class PTherapistSessionActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     String activity_name = ds.getKey();
+                    String repetition = ds.child("repetition").getValue(String.class);
+                    String hold = ds.child("hold").getValue(String.class);
+                    String complete = ds.child("complete").getValue(String.class);
+                    String link = ds.child("link").getValue(String.class);
+                    String note = ds.child("note").getValue(String.class);
+                    String status = ds.child("status").getValue(String.class);
 
-                    if(activity_name != null){
+                    if(activity_name != null && status != null){
                         activity.child(activity_name).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                add_card(activity_name);
+                                if(status.equalsIgnoreCase("incomplete")){
+                                    add_card(activity_name, repetition, hold, complete, link, note, status);
+                                }
+
                             }
 
                             @Override
@@ -87,7 +96,7 @@ public class PTherapistSessionActivity extends AppCompatActivity {
         });
     }
 
-    private void add_card(String name){
+    private void add_card(String name, String repetition, String hold, String complete, String link, String note, String status){
         View view = getLayoutInflater().inflate(R.layout.layout_card_big, null);
 
         TextView nameView = view.findViewById(R.id.activity_name);
@@ -97,6 +106,13 @@ public class PTherapistSessionActivity extends AppCompatActivity {
 
         button.setOnClickListener(v -> {
             Intent intent = new Intent(PTherapistSessionActivity.this, PTasksActivity.class);
+            intent.putExtra("name", name);
+            intent.putExtra("repetition", repetition);
+            intent.putExtra("hold", hold);
+            intent.putExtra("complete", complete);
+            intent.putExtra("link", link);
+            intent.putExtra("note", note);
+            intent.putExtra("status", status);
             startActivity(intent);
         });
 

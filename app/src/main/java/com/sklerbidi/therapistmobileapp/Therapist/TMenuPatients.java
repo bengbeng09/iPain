@@ -131,8 +131,6 @@ public class TMenuPatients extends Fragment {
         });
     }
 
-
-
     private void add_card(String firstname, String lastname, String user_code){
         View view = getLayoutInflater().inflate(R.layout.layout_card, null);
 

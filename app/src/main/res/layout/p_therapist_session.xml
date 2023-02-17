@@ -57,6 +57,7 @@
         android:layout_below="@id/layout_1"
         style="@style/scroll_layout_main">
         <LinearLayout
+            android:paddingBottom="40dp"
             style="@style/linear_layout_vertical">
 
             <TextView

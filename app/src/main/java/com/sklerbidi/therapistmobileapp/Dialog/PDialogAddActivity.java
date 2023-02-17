@@ -41,6 +41,7 @@ public class PDialogAddActivity extends AppCompatDialogFragment {
     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://student-theses-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
     ImageView image;
     String user_code;
+    Bitmap bitmap;
     Button btn_back, btn_confirm, btn_upload;
 
     @NonNull
@@ -74,6 +75,7 @@ public class PDialogAddActivity extends AppCompatDialogFragment {
             final String activity_link = et_link.getText().toString();
             final String activity_note = et_therapist.getText().toString();
 
+
             if(LoginActivity.isNotEmpty(new String[]{activity_name, activity_repetition, activity_hold, activity_complete, activity_link, activity_note})){
 
                 bundle.putString("a_name", activity_name);
@@ -82,6 +84,10 @@ public class PDialogAddActivity extends AppCompatDialogFragment {
                 bundle.putString("a_complete", activity_complete);
                 bundle.putString("a_link", activity_link);
                 bundle.putString("a_note", activity_note);
+
+                if(bitmap != null){
+                    bundle.putParcelable("a_image", bitmap);
+                }
                 getParentFragmentManager().setFragmentResult("request_activity", bundle);
                 getParentFragmentManager().beginTransaction().remove(PDialogAddActivity.this).commit();
 
@@ -104,7 +110,7 @@ public class PDialogAddActivity extends AppCompatDialogFragment {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri imageUri = data.getData();
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
                 image.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();

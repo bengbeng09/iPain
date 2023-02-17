@@ -42,7 +42,7 @@
 
                     <TextView
                         android:id="@+id/tv_pending_task"
-                        android:text="10"
+                        android:text="0"
                         android:layout_marginTop="0dp"
                         style="@style/text_size_4_white"/>
 
@@ -73,7 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
-                        android:text="20"
+                        android:text="0"
                         style="@style/text_size_4_white"/>
 
                 </LinearLayout>
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
@@ -109,7 +109,7 @@
 
                     <TextView
                         android:id="@+id/tv_patients"
-                        android:text="10"
+                        android:text="0"
                         android:layout_marginTop="0dp"
                         style="@style/text_size_4_white"/>
 

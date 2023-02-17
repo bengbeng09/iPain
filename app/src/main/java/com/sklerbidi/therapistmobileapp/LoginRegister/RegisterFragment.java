@@ -104,7 +104,7 @@ public class RegisterFragment extends Fragment {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
+                            toast("unknown database error");
                         }
                     });
                 }else{

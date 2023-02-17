@@ -1,6 +1,7 @@
 package com.sklerbidi.therapistmobileapp.Therapist;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Binder;
 import android.os.Bundle;
 
@@ -15,15 +16,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
 import com.sklerbidi.therapistmobileapp.Dialog.PDialogAddActivity;
 import com.sklerbidi.therapistmobileapp.R;
+
+import java.io.ByteArrayOutputStream;
 
 
 public class TPatientSessionActivity extends AppCompatActivity {
@@ -64,6 +73,7 @@ public class TPatientSessionActivity extends AppCompatActivity {
                 String a_complete = bundle.getString("a_complete");
                 String a_link = bundle.getString("a_link");
                 String a_note = bundle.getString("a_note");
+                Bitmap bitmap = bundle.getParcelable("bitmap");
 
                 DatabaseReference activity = databaseReference.child("users").child(user_code).child("therapists").child(ActivityNavigation.user_code).child("activities").child(a_name);
 ;
@@ -73,6 +83,28 @@ public class TPatientSessionActivity extends AppCompatActivity {
                 activity.child("link").setValue(a_link);
                 activity.child("note").setValue(a_note);
                 activity.child("status").setValue("incomplete");
+
+                if(bitmap != null){
+                    FirebaseStorage storage = FirebaseStorage.getInstance();
+                    StorageReference storageRef = storage.getReference();
+                    StorageReference imagesRef = storageRef.child("users").child(user_code).child("therapists").child(ActivityNavigation.user_code).child("activities").child(a_name);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                    byte[] data = stream.toByteArray();
+
+                    UploadTask uploadTask = imagesRef.child("images/image.jpg").putBytes(data);
+
+                    uploadTask
+                            .addOnSuccessListener(taskSnapshot ->
+                                    Toast.makeText(getApplicationContext() , "Activity uploaded successfully", Toast.LENGTH_SHORT).show())
+                            .addOnFailureListener(e ->
+                                    Toast.makeText(getApplicationContext() , "Image upload failed", Toast.LENGTH_SHORT).show())
+                            .addOnProgressListener(snapshot -> {
+                                //double progress = (100.0 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+                            });
+                }else{
+                    Toast.makeText(getApplicationContext() , "Image upload failed", Toast.LENGTH_SHORT).show();
+                }
 
                 set_card();
 
