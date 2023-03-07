@@ -21,13 +21,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
+import com.sklerbidi.therapistmobileapp.Dialog.DialogChangePass;
+import com.sklerbidi.therapistmobileapp.Dialog.DialogForgotPass;
+import com.sklerbidi.therapistmobileapp.Guest.GuestActivity;
 import com.sklerbidi.therapistmobileapp.R;
 
 
 public class LoginFragment extends Fragment {
 
-    Button btn_login;
-    TextView tv_create_account;
+    Button btn_login, btn_guest_login;
+    TextView tv_create_account, tv_forgot_password;
     EditText et_username, et_password;
     LinearLayout container_login;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://student-theses-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
@@ -50,34 +53,42 @@ public class LoginFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                         boolean usernameExists = false;
-                        String user_code = "";
+                        User user = new User();
 
                         for (DataSnapshot userSnapshot : snapshot.getChildren()) {
                             String username_check = userSnapshot.child("username").getValue(String.class);
 
                             if (username_check != null && username_check.equals(username)) {
-                                user_code = userSnapshot.getKey();
+                                user.setUserCode(userSnapshot.getKey());
+                                user.setPassword(userSnapshot.child("password").getValue(String.class));
+                                user.setUserType(userSnapshot.child("user_type").getValue(String.class));
+                                user.setFirstName(userSnapshot.child("first_name").getValue(String.class));
+                                user.setLastName(userSnapshot.child("last_name").getValue(String.class));
+                                user.setEmail(userSnapshot.child("email").getValue(String.class));
                                 usernameExists = true;
                                 break;
                             }
                         }
 
-                        if(usernameExists && user_code != null){
-                            final String get_password = snapshot.child(user_code).child("password").getValue(String.class);
-                            final String get_user_type = snapshot.child(user_code).child("user_type").getValue(String.class);
-                            final String get_first_name = snapshot.child(user_code).child("first_name").getValue(String.class);
-                            final String get_last_name = snapshot.child(user_code).child("last_name").getValue(String.class);
+                        if(usernameExists){
 
-                            if(get_password != null && get_password.equals(password)){
-
+                            if(user.getPassword() != null && user.getPassword().equals(password)){
                                 toast("Login successfully");
 
+                                String[][] data = {
+                                        {"username", username},
+                                        {"user_type", user.getUserType()},
+                                        {"first_name", user.getFirstName()},
+                                        {"last_name", user.getLastName()},
+                                        {"user_code", user.getUserCode()},
+                                        {"email", user.getEmail()}
+                                };
+
                                 Intent intent = new Intent(getActivity(), ActivityNavigation.class);
-                                intent.putExtra("username", username);
-                                intent.putExtra("user_type", get_user_type);
-                                intent.putExtra("first_name", get_first_name);
-                                intent.putExtra("last_name", get_last_name);
-                                intent.putExtra("user_code", user_code);
+
+                                for (String[] pair : data) {
+                                    intent.putExtra(pair[0], pair[1]);
+                                }
 
                                 startActivity(intent);
 
@@ -88,6 +99,7 @@ public class LoginFragment extends Fragment {
                             }else{
                                 toast("Invalid Password");
                             }
+
                         }else{
                             toast("Invalid Credentials");
                         }
@@ -102,7 +114,16 @@ public class LoginFragment extends Fragment {
                 toast("Do not leave any field blank");
             }
 
+        });
 
+        btn_guest_login.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), GuestActivity.class);
+
+            startActivity(intent);
+
+            if (getActivity() != null) {
+                getActivity().finish();
+            }
 
         });
 
@@ -112,13 +133,80 @@ public class LoginFragment extends Fragment {
             et_password.setText("");
 
             RegisterFragment registerFragment = new RegisterFragment();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(((ViewGroup)getView().getParent()).getId(), registerFragment, "register")
-                    .addToBackStack(null)
-                    .commit();
+            if(getActivity()!= null){
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(((ViewGroup)getView().getParent()).getId(), registerFragment, "register")
+                        .addToBackStack(null)
+                        .commit();
+            }
+
+        });
+
+        tv_forgot_password.setOnClickListener(v -> {
+            DialogForgotPass dialogForgotPass = new DialogForgotPass();
+            dialogForgotPass.setCancelable(false);
+            dialogForgotPass.show(getParentFragmentManager(), "forgot pass");
         });
 
         return view;
+    }
+
+    public static class User {
+        private String password;
+        private String userType;
+        private String firstName;
+        private String lastName;
+        private String userCode;
+        private String email;
+
+        public String getUserCode() {
+            return userCode;
+        }
+
+        public void setUserCode(String userCode) {
+            this.userCode = userCode;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+        public String getUserType() {
+            return userType;
+        }
+
+        public void setUserType(String user_type) {
+            this.userType = user_type;
+        }
+
+        public String getFirstName() {
+            return firstName;
+        }
+
+        public void setFirstName(String firstName) {
+            this.firstName = firstName;
+        }
+
+        public String getLastName() {
+            return lastName;
+        }
+
+        public void setLastName(String lastName) {
+            this.lastName = lastName;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        // Add constructor, getters and setters
     }
 
 
@@ -126,11 +214,14 @@ public class LoginFragment extends Fragment {
         Toast.makeText(getActivity(), toast, Toast.LENGTH_SHORT).show();
     }
 
+
     public void findView(View view){
         btn_login = view.findViewById(R.id.btn_login);
+        btn_guest_login = view.findViewById(R.id.btn_login_guest);
         container_login = view.findViewById(R.id.login_1);
         tv_create_account = view.findViewById(R.id.tv_create_account);
         et_username = view.findViewById(R.id.et_username);
         et_password = view.findViewById(R.id.et_password);
+        tv_forgot_password = view.findViewById(R.id.tv_forgot_password);
     }
 }

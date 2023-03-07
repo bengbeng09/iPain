@@ -87,6 +87,60 @@
         <item name="android:textSize">30sp</item>
     </style>
 
+    <style name="card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">40dp</item>
+        <item name="android:layout_marginEnd">40dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="cardElevation">3dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="cardCornerRadius">5dp</item>
+    </style>
+
+    <style name="card_title_text" parent="default_text">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="card_title_text_medium" parent="card_title_text">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="card_title_text_large" parent="card_title_text">
+        <item name="android:textSize">80sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="card_desc_text" parent="default_text">
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="card_desc_info" parent="default_text">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="card_desc_info_bold">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+    <style name="layout_linear_horizontal">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
 
     <style name="button">
         <item name="android:layout_height">40dp</item>
@@ -94,6 +148,14 @@
         <item name="android:background">@drawable/button_round_corner</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
+    <style name="button_outlined">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/button_round_outlined</item>
+        <item name="android:textColor">#3CA1E2</item>
+    </style>
+
 
     <style name="button_back">
         <item name="android:layout_height">40dp</item>
@@ -191,15 +253,5 @@
         <item name="android:textSize">10sp</item>
 
     </style>
-
-    <style name="button_card">
-        <item name="android:layout_width">60dp</item>
-        <item name="android:layout_height">30dp</item>
-        <item name="android:layout_marginRight">10dp</item>
-        <item name="android:textSize">10sp</item>
-        <item name="android:layout_centerVertical">true</item>
-        <item name="android:background">@drawable/button_rounded_corner</item>
-    </style>
-
 
 </resources>

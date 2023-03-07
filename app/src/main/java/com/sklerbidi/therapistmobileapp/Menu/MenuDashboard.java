@@ -49,10 +49,6 @@ public class MenuDashboard extends Fragment {
 
     private void set_dashboard(){
         switch (ActivityNavigation.user_type){
-            case "Regular User":
-                container_therapist.setVisibility(View.GONE);
-                container_patient.setVisibility(View.GONE);
-                break;
             case "Clinic Therapist":
                 DatabaseReference patientsRef = databaseReference.child("users").child(ActivityNavigation.user_code).child("patients");
                 patientsRef.addListenerForSingleValueEvent(new ValueEventListener() {

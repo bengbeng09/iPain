@@ -4,7 +4,6 @@ import static android.app.Activity.RESULT_OK;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -22,12 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.sklerbidi.therapistmobileapp.ActivityNavigation;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
 
@@ -52,19 +47,7 @@ public class PDialogAddActivity extends AppCompatDialogFragment {
 
         findView(view);
 
-        getParentFragmentManager().setFragmentResultListener("set_activity", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
-                user_code = bundle.getString("user_code");
-            }
-        });
-
-        btn_upload.setOnClickListener(v -> {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(intent, PICK_IMAGE_REQUEST);
-        });
+        getParentFragmentManager().setFragmentResultListener("set_activity", this, (requestKey, bundle) -> user_code = bundle.getString("user_code"));
 
         btn_confirm.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
@@ -95,6 +78,13 @@ public class PDialogAddActivity extends AppCompatDialogFragment {
                 Toast.makeText(getActivity(), "Fill up all fields",
                         Toast.LENGTH_LONG).show();
             }
+        });
+
+        btn_upload.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
         });
 
         btn_back.setOnClickListener(v -> getParentFragmentManager().beginTransaction().remove(PDialogAddActivity.this).commit());

@@ -1,4 +1,4 @@
-package com.sklerbidi.therapistmobileapp;
+package com.sklerbidi.therapistmobileapp.CustomClass;
 
 public class UserInfo {
     private String username;

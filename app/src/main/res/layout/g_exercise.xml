@@ -1,0 +1,975 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="20dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Guest.GuestExerciseActivity">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+    <Button
+        android:layout_width="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/btn_back"
+        android:drawableEnd="@drawable/ic_baseline_arrow_back_ios_24"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_height="30dp"/>
+
+    <LinearLayout
+        android:id="@+id/container_upper_back"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_shoulder_rugs"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/shoulder_shrugs" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/shoulder_shrugs_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_low_row"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/low_row" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/low_row_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_uppercut"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/upper_cut" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/upper_cut_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_scalene"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/scalene_stretch" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/scalene_stretch_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/container_lower_back"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_partial"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/partial_sit_up" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/partial_sit_up_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_lumbar"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/lumbar_rocks" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/lumbar_rocks_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_dead"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/dead_boos" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/dead_boos_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_bird"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/bird_dog" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/bird_dog_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_superman"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/superman" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/superman_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/container_knee"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_wall"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/wall_squat" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/wall_squat_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_heel"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/heel_raises" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/heel_raises_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_clam"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/clam_shell" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/clam_shell_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_straight"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/straight_leg" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/straight_leg_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_terminal"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/terminal_knee" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/terminal_knee_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/container_foot"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_ankle"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/ankle" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/ankle_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_heel2"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/heel_raises" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/heel_raises_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_single"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/single_leg" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/single_leg_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_gentle"
+          style="@style/card">
+
+        <LinearLayout
+            style="@style/layout_linear_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2">
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.3"
+              android:padding="10dp">
+
+            <TextView
+                style="@style/card_title_text"
+                android:text="@string/gentle_hopping" />
+
+            <TextView
+                style="@style/card_desc_text"
+                android:layout_marginBottom="10dp"
+                android:text="@string/gentle_hopping_desc" />
+
+          </LinearLayout>
+
+          <LinearLayout
+              style="@style/layout_linear_vertical"
+              android:layout_width="0dp"
+              android:layout_gravity="center"
+              android:layout_weight="0.7"
+              android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:background="@drawable/image_border"
+                android:scaleType="fitCenter">
+
+            </ImageView>
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+  </LinearLayout>
+
+</ScrollView>

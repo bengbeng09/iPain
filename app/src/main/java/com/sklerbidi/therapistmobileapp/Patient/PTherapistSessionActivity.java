@@ -1,16 +1,18 @@
 package com.sklerbidi.therapistmobileapp.Patient;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,10 +26,10 @@ public class PTherapistSessionActivity extends AppCompatActivity {
 
     Button back;
     String user_code, name, clinic;
-    TextView tv_name, tv_clinic;
-    LinearLayout container_activities;
+    TextView tv_name, tv_clinic, tv_completed, tv_pending;
+    LinearLayout container_incomplete, container_completed;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://student-theses-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
-
+    private static final int REQUEST_CODE_SECOND_ACTIVITY = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +50,14 @@ public class PTherapistSessionActivity extends AppCompatActivity {
 
         set_card();
 
-        back.setOnClickListener(v -> {
-            finish();
-        });
+        back.setOnClickListener(v -> finish());
     }
 
     private void set_card(){
-        container_activities.removeAllViews();
+        tv_completed.setVisibility(View.GONE);
+        tv_pending.setVisibility(View.GONE);
+        container_incomplete.removeAllViews();
+        container_completed.removeAllViews();
         DatabaseReference activity = databaseReference.child("users").child(ActivityNavigation.user_code).child("therapists").child(user_code).child("activities");
         activity.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -72,12 +75,8 @@ public class PTherapistSessionActivity extends AppCompatActivity {
                         activity.child(activity_name).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if(status.equalsIgnoreCase("incomplete")){
-                                    add_card(activity_name, repetition, hold, complete, link, note, status);
-                                }
-
+                                add_card(activity_name, repetition, hold, complete, link, note, status, user_code);
                             }
-
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
                                 // Handle error here
@@ -96,8 +95,8 @@ public class PTherapistSessionActivity extends AppCompatActivity {
         });
     }
 
-    private void add_card(String name, String repetition, String hold, String complete, String link, String note, String status){
-        View view = getLayoutInflater().inflate(R.layout.layout_card_big, null);
+    private void add_card(String name, String repetition, String hold, String complete, String link, String note, String status, String therapist_code){
+        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.layout_card_big, null);
 
         TextView nameView = view.findViewById(R.id.activity_name);
         CardView button = view.findViewById(R.id.btn_card);
@@ -113,10 +112,35 @@ public class PTherapistSessionActivity extends AppCompatActivity {
             intent.putExtra("link", link);
             intent.putExtra("note", note);
             intent.putExtra("status", status);
-            startActivity(intent);
+            intent.putExtra("therapist", therapist_code);
+            startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY);
+            //startActivity(intent);
         });
 
-        container_activities.addView(view);
+        if(status.equalsIgnoreCase("incomplete")){
+            if(tv_pending.getVisibility() == View.GONE){
+                tv_pending.setVisibility(View.VISIBLE);
+            }
+            container_incomplete.addView(view);
+        }else{
+            if(tv_completed.getVisibility() == View.GONE){
+                tv_completed.setVisibility(View.VISIBLE);
+            }
+            int newColor = getResources().getColor(R.color.teal_200);
+            ColorStateList colorStateList = ColorStateList.valueOf(newColor);
+            button.setBackgroundTintList(colorStateList);
+            container_completed.addView(view);
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_SECOND_ACTIVITY && resultCode == RESULT_OK) {
+            // Call the desired method here
+            set_card();
+        }
     }
 
     @Override
@@ -126,8 +150,11 @@ public class PTherapistSessionActivity extends AppCompatActivity {
 
     private void findView(){
         back = findViewById(R.id.btn_back);
-        container_activities = findViewById(R.id.container_activity);
+        container_incomplete = findViewById(R.id.container_incomplete);
         tv_name = findViewById(R.id.tv_therapist_name);
         tv_clinic = findViewById(R.id.tv_therapist_clinic);
+        container_completed = findViewById(R.id.container_completed);
+        tv_completed = findViewById(R.id.tv_completed);
+        tv_pending = findViewById(R.id.tv_pending);
     }
 }

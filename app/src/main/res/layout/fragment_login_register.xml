@@ -132,6 +132,7 @@
 
             <TextView
                 style="@style/text_size_0"
+                android:id="@+id/tvl_clinic_name"
                 android:textAlignment="textStart"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"

@@ -1,6 +1,7 @@
 package com.sklerbidi.therapistmobileapp.Therapist;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.os.Binder;
 import android.os.Bundle;
@@ -8,8 +9,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentResultListener;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -64,53 +67,6 @@ public class TPatientSessionActivity extends AppCompatActivity {
 
         set_card();
 
-        getSupportFragmentManager().setFragmentResultListener("request_activity", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
-                String a_name = bundle.getString("a_name");
-                String a_repetition = bundle.getString("a_repetition");
-                String a_hold = bundle.getString("a_hold");
-                String a_complete = bundle.getString("a_complete");
-                String a_link = bundle.getString("a_link");
-                String a_note = bundle.getString("a_note");
-                Bitmap bitmap = bundle.getParcelable("bitmap");
-
-                DatabaseReference activity = databaseReference.child("users").child(user_code).child("therapists").child(ActivityNavigation.user_code).child("activities").child(a_name);
-;
-                activity.child("repetition").setValue(a_repetition);
-                activity.child("hold").setValue(a_hold);
-                activity.child("complete").setValue(a_complete);
-                activity.child("link").setValue(a_link);
-                activity.child("note").setValue(a_note);
-                activity.child("status").setValue("incomplete");
-
-                if(bitmap != null){
-                    FirebaseStorage storage = FirebaseStorage.getInstance();
-                    StorageReference storageRef = storage.getReference();
-                    StorageReference imagesRef = storageRef.child("users").child(user_code).child("therapists").child(ActivityNavigation.user_code).child("activities").child(a_name);
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                    byte[] data = stream.toByteArray();
-
-                    UploadTask uploadTask = imagesRef.child("images/image.jpg").putBytes(data);
-
-                    uploadTask
-                            .addOnSuccessListener(taskSnapshot ->
-                                    Toast.makeText(getApplicationContext() , "Activity uploaded successfully", Toast.LENGTH_SHORT).show())
-                            .addOnFailureListener(e ->
-                                    Toast.makeText(getApplicationContext() , "Image upload failed", Toast.LENGTH_SHORT).show())
-                            .addOnProgressListener(snapshot -> {
-                                //double progress = (100.0 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
-                            });
-                }else{
-                    Toast.makeText(getApplicationContext() , "Image upload failed", Toast.LENGTH_SHORT).show();
-                }
-
-                set_card();
-
-            }
-        });
-
         add_activity.setOnClickListener(v -> {
             PDialogAddActivity menuActivity = new PDialogAddActivity();
             Bundle bundle = new Bundle();
@@ -118,6 +74,52 @@ public class TPatientSessionActivity extends AppCompatActivity {
             menuActivity.setArguments(bundle);
             menuActivity.setCancelable(false);
             menuActivity.show(getSupportFragmentManager(), "add activity");
+        });
+
+        getSupportFragmentManager().setFragmentResultListener("request_activity", this, (requestKey, bundle) -> {
+            String a_name = bundle.getString("a_name");
+            String a_repetition = bundle.getString("a_repetition");
+            String a_hold = bundle.getString("a_hold");
+            String a_complete = bundle.getString("a_complete");
+            String a_link = bundle.getString("a_link");
+            String a_note = bundle.getString("a_note");
+            Bitmap bitmap = bundle.getParcelable("a_image");
+
+            DatabaseReference activity = databaseReference.child("users").child(user_code).child("therapists").child(ActivityNavigation.user_code).child("activities").child(a_name);
+;
+            activity.child("repetition").setValue(a_repetition);
+            activity.child("hold").setValue(a_hold);
+            activity.child("complete").setValue(a_complete);
+            activity.child("link").setValue(a_link);
+            activity.child("note").setValue(a_note);
+            activity.child("status").setValue("incomplete");
+
+            if(bitmap != null){
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference storageRef = storage.getReference();
+                StorageReference imagesRef = storageRef.child("users").child(user_code).child("therapists").child(ActivityNavigation.user_code).child("activities").child(a_name);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byte[] data = stream.toByteArray();
+
+                UploadTask uploadTask = imagesRef.child("activity_image/image.jpg").putBytes(data);
+
+                uploadTask
+                        .addOnSuccessListener(taskSnapshot ->
+                                Toast.makeText(getApplicationContext() , "Activity uploaded successfully", Toast.LENGTH_SHORT).show())
+                        .addOnFailureListener(e -> {
+                            Toast.makeText(getApplicationContext(), "Image upload failed for some reason", Toast.LENGTH_SHORT).show();
+                            Log.wtf("wtf", e);
+                        })
+                        .addOnProgressListener(snapshot -> {
+
+                        });
+            }else{
+                Toast.makeText(getApplicationContext() , "Image upload failed, Bitmap is null", Toast.LENGTH_SHORT).show();
+            }
+
+            set_card();
+
         });
 
         btn_back.setOnClickListener(v -> finish());
@@ -132,12 +134,13 @@ public class TPatientSessionActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     String activity_name = ds.getKey();
+                    String status =  ds.child("status").getValue(String.class);
 
                     if(activity_name != null){
                         activity.child(activity_name).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                add_card(activity_name);
+                                add_card(activity_name, status);
                             }
 
                             @Override
@@ -158,10 +161,17 @@ public class TPatientSessionActivity extends AppCompatActivity {
         });
     }
 
-    private void add_card(String name){
+    private void add_card(String name, String status){
         View view = getLayoutInflater().inflate(R.layout.layout_card_big, null);
 
         TextView nameView = view.findViewById(R.id.activity_name);
+        CardView button = view.findViewById(R.id.btn_card);
+
+        if(status.equalsIgnoreCase("complete")){
+            int newColor = getResources().getColor(R.color.teal_200);
+            ColorStateList colorStateList = ColorStateList.valueOf(newColor);
+            button.setBackgroundTintList(colorStateList);
+        }
 
         String cardDetails = name.toUpperCase();
         nameView.setText(cardDetails);

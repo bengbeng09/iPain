@@ -23,18 +23,9 @@
             android:background="?android:attr/selectableItemBackground"
             android:layout_height="30dp"/>
 
-        <ImageView
-            android:id="@+id/therapist_profile"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="100dp"
-            android:src="@drawable/ic_baseline_account_box_24"
-            android:layout_height="100dp">
-
-        </ImageView>
-
 
         <TextView
+            android:layout_marginTop="20dp"
             android:id="@+id/tv_therapist_clinic"
             style="@style/title_text"
             android:textAlignment="textStart"
@@ -62,6 +53,8 @@
 
             <TextView
                 android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:id="@+id/tv_pending"
                 style="@style/text_size_1.5"
                 android:textAlignment="center"
                 android:layout_marginStart="5dp"
@@ -69,7 +62,26 @@
                 android:textColor="@color/black" />
 
             <LinearLayout
-                android:id="@+id/container_activity"
+                android:id="@+id/container_incomplete"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginStart="40dp"
+                style="@style/layout_linear_vertical">
+
+            </LinearLayout>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_completed"
+                android:layout_marginTop="20dp"
+                style="@style/text_size_1.5"
+                android:textAlignment="center"
+                android:layout_marginStart="5dp"
+                android:text="COMPLETED TASKS"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/container_completed"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="40dp"
                 android:layout_marginStart="40dp"

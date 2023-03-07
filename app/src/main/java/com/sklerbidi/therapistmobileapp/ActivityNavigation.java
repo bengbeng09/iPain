@@ -23,7 +23,7 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
 
     public DrawerLayout drawerLayout;
     public static NavigationView navigationView;
-    public static String username, user_type, user_code,firstname, lastname;
+    public static String username, user_type, user_code,firstname, lastname, email;
     Bundle bundle;
 
     @Override
@@ -49,6 +49,7 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
             username = extras.getString("username");
             firstname = extras.getString("first_name");
             lastname = extras.getString("last_name");
+            email = extras.getString("email");
         }
 
         set_item(user_type);
@@ -65,10 +66,6 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
     {
         Menu nav_Menu = navigationView.getMenu();
         switch (type){
-            case "Regular User":
-                nav_Menu.findItem(R.id.navigation_patients).setVisible(false);
-                nav_Menu.findItem(R.id.navigation_therapy_session).setVisible(false);
-                break;
             case "Clinic Therapist":
                 nav_Menu.findItem(R.id.navigation_therapy_session).setVisible(false);
                 break;

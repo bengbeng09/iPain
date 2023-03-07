@@ -7,33 +7,25 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.sklerbidi.therapistmobileapp.ActivityNavigation;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
-import com.sklerbidi.therapistmobileapp.LoginRegister.RegisterFragment;
 import com.sklerbidi.therapistmobileapp.R;
-import com.sklerbidi.therapistmobileapp.UserInfo;
+import com.sklerbidi.therapistmobileapp.CustomClass.UserInfo;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 
 public class TDialogAddPatient extends AppCompatDialogFragment {
@@ -45,6 +37,7 @@ public class TDialogAddPatient extends AppCompatDialogFragment {
     ArrayAdapter<String> arrayAdapter;
     String[] patients;
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder =  new AlertDialog.Builder(getActivity());
@@ -62,7 +55,7 @@ public class TDialogAddPatient extends AppCompatDialogFragment {
                     String user_type = ds.child("user_type").getValue(String.class);
                     String username = ds.child("username").getValue(String.class);
 
-                    if(user_type.equals("Clinic Patient")){
+                    if (user_type != null && user_type.equals("Clinic Patient")) {
                         UserInfo user = new UserInfo(username, first_name, last_name, user_type, user_code);
                         users.add(user);
                     }
@@ -75,7 +68,7 @@ public class TDialogAddPatient extends AppCompatDialogFragment {
                 }
 
                 if(patients != null){
-                    arrayAdapter = new ArrayAdapter<String>(getContext(), R.layout.layout_list_item, patients);
+                    arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.layout_list_item, patients);
                     et_patient_name.setAdapter(arrayAdapter);
                 }
 
@@ -115,7 +108,7 @@ public class TDialogAddPatient extends AppCompatDialogFragment {
 
             if(LoginActivity.isNotEmpty(new String[]{et_patient_name.getText().toString()})){
                 String input = et_patient_name.getText().toString();
-                String userCode = "";
+                String userCode;
 
                 if (input.contains("(") && input.contains(")")) {
                     userCode = input.substring(input.indexOf("(") + 1, input.indexOf(")"));
@@ -169,11 +162,10 @@ public class TDialogAddPatient extends AppCompatDialogFragment {
         String[] words = originalString.split(" ");
         StringBuilder capitalizedString = new StringBuilder();
         for (String word : words) {
-            capitalizedString.append(word.substring(0, 1).toUpperCase() + word.substring(1) + " ");
+            capitalizedString.append(word.substring(0, 1).toUpperCase()).append(word.substring(1)).append(" ");
         }
         return capitalizedString.toString().trim();
     }
-
 
     public void findView(View view){
         et_patient_name = view.findViewById(R.id.et_patient_name);

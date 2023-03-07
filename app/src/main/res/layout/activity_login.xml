@@ -34,6 +34,22 @@
 
     </androidx.cardview.widget.CardView>
 
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/header"
+        android:clickable="true"
+        android:elevation="3dp"
+        android:focusable="true"
+        android:src="@drawable/ic_baseline_question_mark_24"
+        app:borderWidth="0dp"
+        app:fabSize="mini" />
 
 </RelativeLayout>

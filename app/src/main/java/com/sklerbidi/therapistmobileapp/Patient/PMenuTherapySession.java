@@ -91,7 +91,7 @@ public class PMenuTherapySession extends Fragment {
                                         if (!snapshot.exists()) {
                                             String user_type = dataSnapshot.child("user_type").getValue(String.class);
 
-                                            if(user_type.equals("Clinic Therapist")){
+                                            if(user_type != null && user_type.equals("Clinic Therapist")){
                                                 databaseReference.child("users").child(ActivityNavigation.user_code).child("therapists").child(therapist_code).child("status").setValue("active");
                                                 databaseReference.child("users").child(therapist_code).child("patients").child(ActivityNavigation.user_code).child("status").setValue("active");
 

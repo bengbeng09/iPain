@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,11 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
 import com.sklerbidi.therapistmobileapp.Dialog.TDialogAddPatient;
-import com.sklerbidi.therapistmobileapp.LoginRegister.RegisterFragment;
 import com.sklerbidi.therapistmobileapp.R;
-import com.sklerbidi.therapistmobileapp.UserInfo;
-
-import java.util.Random;
 
 
 public class TMenuPatients extends Fragment {

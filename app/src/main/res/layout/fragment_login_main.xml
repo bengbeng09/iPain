@@ -44,6 +44,7 @@
 
             <TextView
                 style="@style/text_size_0_blue"
+                android:id="@+id/tv_forgot_password"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
                 android:text="Forgot Password?"/>
@@ -51,14 +52,23 @@
             <Button
                 style="@style/button"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="50dp"
                 android:id="@+id/btn_login"
                 android:text="LOGIN"/>
+
+            <Button
+                style="@style/button_outlined"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:id="@+id/btn_login_guest"
+                android:textSize="12sp"
+                android:text="LOGIN AS GUEST"/>
 
             <TextView
                 android:id="@+id/tv_create_account"
                 style="@style/text_size_0_blue"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
                 android:layout_marginStart="5dp"
                 android:textAlignment="center"
                 android:text="Create an account here"/>

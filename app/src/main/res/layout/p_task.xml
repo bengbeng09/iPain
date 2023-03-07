@@ -32,11 +32,11 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
-                android:padding="20dp"
+                android:scaleType="fitCenter"
                 android:id="@+id/image_view"
                 android:src="@drawable/ic_baseline_directions_run_24"
                 android:layout_width="match_parent"
-                android:background="#D9D9D9"
+                android:background="@color/white"
                 android:layout_height="200dp">
             </ImageView>
 

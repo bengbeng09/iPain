@@ -7,14 +7,110 @@
 
     <string-array name="user_type">
         <item>Select Account Type...</item>
-        <item>Regular User</item>
         <item>Clinic Therapist</item>
         <item>Clinic Patient</item>
     </string-array>
 
+    <string name="agreement_title">AGREEMENT BEFORE USING THE APPLICATION</string>
+    <string name="agreement1">SOME OF EXERCISES ARE NOT SUITABLE FOR EVERYONE AND THIS/OR ANY OTHER EXERCISES PROGRAMS MAY RESULT IN INJURY. IF YOURS DEALING CHRONG OR HEALTH CONDITION, AND/OR IF YOU EXFRIENCING PERGNANT, INJURY OR ELDERLY. PLEASE CONSULT YOUR DOCTOR BEFORE BEGINNING THIS PROGRAM THE APPLICATION IS NOT RECOMMENDED IF YOU ARE EXERCISES ANY HEALTH ISSUES.</string>
+    <string name="agreement2">BY PARTCIPATING ANY OF THE EXERCISES IN THIS PROGRAM. YOU ASSUME ALL PICKS OF HARM/INJURY. IPAIN ACCEPTS NO RESPONSIBILITY OR LIABILITY FOR ANY DAMAGE OF LOSS YOU MAY EXPERIENCE AS A RESULT OF ENGAGING IN THIS EXERCISES PROGRAM.</string>
+    <string name="agreement3">ALWAYS WARM UP BEFORE PERFORMING ANY ACTIVITY AND NEVER EXERCISE BEYOND YOUR LEVEL OF COMFORT.</string>
+    <string name="agreement4">PLEASE STOP WHENEVER YOU FEEL DISCOMFORT IN DOING EXERCISES. IF YOU EXPERIENCE ANY SYMPTOMS PERSISTS AFTER YOU STOP EXERCISING, PLEASE SEEK MEDICAL HELP IMMEDIATELY</string>
+    <string name="agreement5">THE EXERCISE PROGRAM, AS WELL AS THE CLASS TUTORIAL AND INSTUCTIONS INCLUDED IN IT, ARE NOT INTENDED AND SHOULD NOT BE USED AS A SUBSTITUTE FOR PROFESSIONAL MEDICAL ADVICE, DIAGNOSIS OR TREATMENT</string>
+    <string name="agreement6">IPAIN MAKES NO REPRESENTATION, WHETHER IMPLIED CLAIM OR PROMISE REGARDING THE SAFETY, USEFULLNESS OR RESULT OR THIS HOME EXERCISE PROGRAM.</string>
+
+    <string name="dear_ipain">Dear iPAIN partner, these exercises help minor body and muscle pain not for serious injuries and stop continuing if you feel aby discomfort. Consult a medical therapist for physical discomfort. Its about time to move smarter, Good luck today!</string>
     <string name="therapist_session_1">Kindly provide the code given to you by the therapist at your clinic visit below, to easily access your session.</string>
     <string name="therapist_session_2">ENTER THERAPIST CODE</string>
     <string name="link">Click link below for full tutorial</string>
+
+    <string name="pain_intro">Hi Guest User! Where do you feel the pain?</string>
+    <string name="pain_intro2">(Touch the dots where you feel the pain)</string>
+
+    <string name="shoulder_shrugs">Shoulder Shrugs</string>
+    <string name="shoulder_shrugs_desc">Strengthens the upper back muscles, improves posture, and relieves tension in the neck and shoulders</string>
+    <string name="shoulder_shrugs_how">Stand with your feet shoulder–width apart and arms by your sides. Lift your shoulders up towards your ears and hold for 1–2 seconds before lowering them back down.</string>
+    <string name="shoulder_shrugs_session">Aim for 2–3 sets of 10–15 reps</string>
+
+    <string name="low_row">Low Row</string>
+    <string name="low_row_desc">Targets the upper back muscles and improves posture</string>
+    <string name="low_row_how"> Attach a resistance band to a sturdy object at about waist height. Stand facing the anchor point with your arms extended in front of you, holding onto the resistance band handles. Pull your elbows back towards your sides, squeezing your shoulder blades together. Return to starting position.</string>
+    <string name="low_row_session">Repeat for 2–3 sets of 10–15 reps</string>
+
+    <string name="upper_cut">Upper Cut</string>
+    <string name="upper_cut_desc">Works the upper back and shoulder muscles, improves posture, and increases arm strength</string>
+    <string name="upper_cut_how">Stand with your feet shoulder-width apart and arms by your sides. Raise your arms in front of you to shoulder height and bend your elbows at 90 degrees. Punch upward with one arm at a time, rotating your shoulder as you do so</string>
+    <string name="upper_cut_session">Aim for 2–3 sets of 10–15 reps on each arm.</string>
+
+    <string name="scalene_stretch">Scalene Stretch</string>
+    <string name="scalene_stretch_desc">Stretches the neck and shoulder muscles, relieves tension, and improves posture</string>
+    <string name="scalene_stretch_how">Sit or stand up straight and tilt your head to the side, bringing your ear towards your shoulder. Use your hand to gently pull your head further to the side, feeling a stretch in your neck.</string>
+    <string name="scalene_stretch_session">Hold for 20–30 seconds on each side and repeat 2–3 times.</string>
+
+    <string name="partial_sit_up">Partial Sit Up</string>
+    <string name="partial_sit_up_desc">Strengthens the lower back and abdominal muscles, improves posture, and reduces back pain</string>
+    <string name="partial_sit_up_how">Lie on your back with your knees bent and feet flat on the floor. Place your hands behind your head and lift your shoulders off the ground, curling towards your knees. Lower back down.</string>
+    <string name="partial_sit_up_session">Repeat for 2–3 sets of 10–15 reps.</string>
+
+    <string name="lumbar_rocks">Lumbar Rocks</string>
+    <string name="lumbar_rocks_desc">Relieves lower back pain, improves spinal mobility, and strengthens the lower back muscles</string>
+    <string name="lumbar_rocks_how">Lie on your back with your knees bent and feet flat on the floor. Rock your knees side to side, feeling a stretch in your lower back.</string>
+    <string name="lumbar_rocks_session">Aim for 2–3 sets of 10–15 reps.</string>
+
+    <string name="dead_boos">Dead Bugs</string>
+    <string name="dead_boos_desc">Strengthens the lower back muscles and improves posture</string>
+    <string name="dead_boos_how">Lie on your back with your arms extended towards the ceiling and legs lifted in tabletop position. Slowly lower your right arm and left leg towards the ground, keeping your lower back pressed into the floor. Return to starting position and repeat on the opposite side.</string>
+    <string name="dead_boos_session">Aim for 2–3 sets of 10–15 reps on each side.</string>
+
+    <string name="bird_dog">Bird Dog</string>
+    <string name="bird_dog_desc">Strengthens the lower back and abdominal muscles, improves balance and coordination, and reduces back pain</string>
+    <string name="bird_dog_how">Start on your hands and knees, with your wrists directly under your shoulders and knees directly under your hips. Extend your right arm and left leg out straight, keeping your spine in a neutral position. Return to starting position and repeat on the opposite side.</string>
+    <string name="bird_dog_session">Aim for 2–3 sets of 10–15 reps on each side.</string>
+
+    <string name="superman">Superman</string>
+    <string name="superman_desc">Strengthens the lower back muscles and improves posture</string>
+    <string name="superman_how">Lie on your stomach with your arms extended in front of you and legs straight. Lift your arms, chest, and legs off the ground, squeezing your lower back muscles. Lower back down.</string>
+    <string name="superman_session">Repeat for 2–3 sets of 10–15 reps.</string>
+
+    <string name="wall_squat">Wall Squat</string>
+    <string name="wall_squat_desc">Strengthens the quadriceps and gluteal muscles, improves knee stability, and helps prevent knee pain and injuries</string>
+    <string name="wall_squat_how">Stand with your back against a wall and feet hip-width apart. Slide down the wall, bending your knees until your thighs are parallel to the ground.</string>
+    <string name="wall_squat_session">Hold for 30 seconds to 1 minute, then stand up and repeat for 2–3 sets.</string>
+
+    <string name="heel_raises">Heel Raises</string>
+    <string name="heel_raises_desc">Strengthens the calf muscles and improves ankle stability</string>
+    <string name="heel_raises_how">Stand with your feet hip-width apart and lift onto the balls of your feet, squeezing your calf muscles. Lower back down.</string>
+    <string name="heel_raises_session">Repeat for 2–3 sets of 10–15 reps.</string>
+
+    <string name="clam_shell">Clam Shell</string>
+    <string name="clam_shell_desc">Strengthens the hip abductor muscles and improves hip stability</string>
+    <string name="clam_shell_how">Lie on your side with your knees bent and feet together. Lift your top knee up while keeping your feet touching, squeezing your hip muscles. Lower back down.</string>
+    <string name="clam_shell_session">Repeat for 2–3 sets of 10–15 reps on each side.</string>
+
+    <string name="straight_leg">Straight Leg Raises Hip</string>
+    <string name="straight_leg_desc">Strengthens the hip flexor muscles and improves hip mobility</string>
+    <string name="straight_leg_how">Lie on your back with one leg extended straight out in front of you and the other leg bent. Lift your straight leg up towards the ceiling, keeping your knee straight and foot flexed. Lower back down.</string>
+    <string name="straight_leg_session">Repeat for 2–3 sets of 10–15 reps on each leg.</string>
+
+    <string name="terminal_knee">Terminal Knee Extension</string>
+    <string name="terminal_knee_desc">Strengthens the quadriceps muscles and improves knee stability</string>
+    <string name="terminal_knee_how">Sit on a chair with a resistance band looped around your ankle and tied to the chair leg. Straighten your knee against the resistance of the band, then slowly lower back down.</string>
+    <string name="terminal_knee_session">Repeat for 2–3 sets of 10–15 reps on each leg.</string>
+
+    <string name="ankle">Ankle PF TB</string>
+    <string name="ankle_desc">Strengthens the ankle plantar flexor muscles and improves ankle stability</string>
+    <string name="ankle_how">Sit on a chair with a resistance band looped around the ball of your foot and tied to the chair leg. Flex your foot upward against the resistance of the band, then slowly lower back down.</string>
+    <string name="ankle_session">Repeat for 2–3 sets of 10–15 reps on each foot.</string>
+
+    <string name="single_leg">Single Leg Balance</string>
+    <string name="single_leg_desc">Strengthens the calf muscles and improves ankle stability</string>
+    <string name="single_leg_how">Stand on one foot and hold for 30 seconds to 1 minute, then switch to the other foot.</string>
+    <string name="single_leg_session">Repeat for 2–3 sets on each foot.</string>
+
+    <string name="gentle_hopping">Gentle Hopping</string>
+    <string name="gentle_hopping_desc">Improves balance, ankle stability, and proprioception</string>
+    <string name="gentle_hopping_how">Stand on one foot and gently hop up and down, focusing on landing softly and maintaining your balance.</string>
+    <string name="gentle_hopping_session">Repeat for 2–3 sets of 10–15 reps on each foot.</string>
 
 
 </resources>
