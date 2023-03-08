@@ -24,15 +24,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
-import com.sklerbidi.therapistmobileapp.Dialog.TDialogAddPatient;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
-import com.sklerbidi.therapistmobileapp.Therapist.TPatientSessionActivity;
 
 public class PMenuTherapySession extends Fragment {
 
     Button btn_submit;
-    TextView tv_welcome;
+    TextView tv_welcome, tv_return;
     EditText et_therapist_code;
     LinearLayout add_therapist, container_therapist;
     RelativeLayout therapists;
@@ -72,9 +70,16 @@ public class PMenuTherapySession extends Fragment {
             }
         });
 
+        tv_return.setOnClickListener( v -> {
+            therapists.setVisibility(View.VISIBLE);
+            tv_return.setVisibility(View.GONE);
+            add_therapist.setVisibility(View.GONE);
+        });
+
         btn_add_therapist.setOnClickListener(v -> {
-            therapists.setVisibility(View.GONE);
+            tv_return.setVisibility(View.VISIBLE);
             add_therapist.setVisibility(View.VISIBLE);
+            therapists.setVisibility(View.GONE);
         });
 
         btn_submit.setOnClickListener(v -> {
@@ -207,6 +212,7 @@ public class PMenuTherapySession extends Fragment {
     }
 
     private void findView(View view) {
+        tv_return = view.findViewById(R.id.tv_return);
         btn_submit = view.findViewById(R.id.btn_submit);
         et_therapist_code = view.findViewById(R.id.et_therapist_code);
         tv_welcome = view.findViewById(R.id.tv_welcome);

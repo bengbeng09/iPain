@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:fillViewport="true"
     android:layout_height="match_parent"
-    android:background="#F1F1F1"
+    android:background="@color/white"
     tools:context=".Menu.MenuDashboard">
 
     <LinearLayout

@@ -1,16 +1,14 @@
 package com.sklerbidi.therapistmobileapp.Therapist;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
-import android.os.Binder;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.FragmentResultListener;
 
 import android.util.Log;
 import android.view.View;
@@ -19,8 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +24,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
@@ -86,7 +81,6 @@ public class TPatientSessionActivity extends AppCompatActivity {
             Bitmap bitmap = bundle.getParcelable("a_image");
 
             DatabaseReference activity = databaseReference.child("users").child(user_code).child("therapists").child(ActivityNavigation.user_code).child("activities").child(a_name);
-;
             activity.child("repetition").setValue(a_repetition);
             activity.child("hold").setValue(a_hold);
             activity.child("complete").setValue(a_complete);
@@ -162,7 +156,7 @@ public class TPatientSessionActivity extends AppCompatActivity {
     }
 
     private void add_card(String name, String status){
-        View view = getLayoutInflater().inflate(R.layout.layout_card_big, null);
+        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.layout_card_big, null);
 
         TextView nameView = view.findViewById(R.id.activity_name);
         CardView button = view.findViewById(R.id.btn_card);

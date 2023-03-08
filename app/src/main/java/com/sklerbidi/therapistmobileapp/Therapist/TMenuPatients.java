@@ -1,11 +1,11 @@
 package com.sklerbidi.therapistmobileapp.Therapist;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentResultListener;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,43 +44,36 @@ public class TMenuPatients extends Fragment {
 
         set_card();
 
-        getParentFragmentManager().setFragmentResultListener("request_patient", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
+        getParentFragmentManager().setFragmentResultListener("request_patient", this, (requestKey, bundle) -> {
 
-                String patient_username = bundle.getString("username");
-                String patient_user_code = bundle.getString("user_code");
+            String patient_user_code = bundle.getString("user_code");
 
-                Log.wtf("wtf", patient_user_code);
+            Log.wtf("wtf", patient_user_code);
 
-                databaseReference.child("users").child(ActivityNavigation.user_code).child("patients").child(patient_user_code).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (!snapshot.exists()) {
-                            databaseReference.child("users").child(ActivityNavigation.user_code).child("patients").child(patient_user_code).child("status").setValue("active");
-                            databaseReference.child("users").child(patient_user_code).child("therapists").child(ActivityNavigation.user_code).child("status").setValue("active");
-                            set_card();
-                            Toast.makeText(getActivity(), "Patient added successfully", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getActivity(), "Patient already exists", Toast.LENGTH_SHORT).show();
-                        }
+            databaseReference.child("users").child(ActivityNavigation.user_code).child("patients").child(patient_user_code).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (!snapshot.exists()) {
+                        databaseReference.child("users").child(ActivityNavigation.user_code).child("patients").child(patient_user_code).child("status").setValue("active");
+                        databaseReference.child("users").child(patient_user_code).child("therapists").child(ActivityNavigation.user_code).child("status").setValue("active");
+                        set_card();
+                        Toast.makeText(getActivity(), "Patient added successfully", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getActivity(), "Patient already exists", Toast.LENGTH_SHORT).show();
                     }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
+                }
+            });
 
-            }
         });
 
-        add_patient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TDialogAddPatient TDialogAddPatient = new TDialogAddPatient();
-                TDialogAddPatient.setCancelable(false);
-                TDialogAddPatient.show(getActivity().getSupportFragmentManager(), "add patient");
-            }
+        add_patient.setOnClickListener(v -> {
+            TDialogAddPatient TDialogAddPatient = new TDialogAddPatient();
+            TDialogAddPatient.setCancelable(false);
+            TDialogAddPatient.show(getActivity().getSupportFragmentManager(), "add patient");
         });
 
         return view;
@@ -127,7 +120,7 @@ public class TMenuPatients extends Fragment {
     }
 
     private void add_card(String firstname, String lastname, String user_code){
-        View view = getLayoutInflater().inflate(R.layout.layout_card, null);
+        @SuppressLint("InflateParams") View view = getLayoutInflater().inflate(R.layout.layout_card, null);
 
         TextView nameView = view.findViewById(R.id.name);
         Button show = view.findViewById(R.id.btnView);

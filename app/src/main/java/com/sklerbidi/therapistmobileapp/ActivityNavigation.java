@@ -9,7 +9,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -24,7 +23,6 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
     public DrawerLayout drawerLayout;
     public static NavigationView navigationView;
     public static String username, user_type, user_code,firstname, lastname, email;
-    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

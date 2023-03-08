@@ -1,7 +1,6 @@
 package com.sklerbidi.therapistmobileapp.Menu;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,11 +15,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
-import com.sklerbidi.therapistmobileapp.Dialog.DialogAbout;
 import com.sklerbidi.therapistmobileapp.Dialog.DialogChangePass;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
-import com.sklerbidi.therapistmobileapp.Patient.PTherapistLoadingActivity;
-import com.sklerbidi.therapistmobileapp.Patient.PTherapistSessionActivity;
 import com.sklerbidi.therapistmobileapp.R;
 
 public class MenuSettings extends Fragment {

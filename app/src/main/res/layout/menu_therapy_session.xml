@@ -7,9 +7,11 @@
     android:gravity="center"
     tools:context=".Patient.PMenuTherapySession">
 
+
+
     <LinearLayout
         android:id="@+id/view_add_therapist"
-        android:visibility="gone"
+        android:visibility="visible"
         style="@style/linear_layout_vertical"
         android:layout_marginBottom="150dp"
         android:layout_marginStart="30dp"
@@ -41,11 +43,19 @@
         <Button
             style="@style/button"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="30dp"
             android:layout_marginStart="80dp"
             android:layout_marginEnd="80dp"
             android:id="@+id/btn_submit"
             android:text="SUBMIT"/>
+
+        <TextView
+            android:id="@+id/tv_return"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:textColor="#A4A4a4"
+            style="@style/text_size_1"
+            android:text="RETURN"/>
 
     </LinearLayout>
 

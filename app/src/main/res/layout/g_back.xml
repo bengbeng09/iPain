@@ -20,7 +20,7 @@
                 android:layout_height="40dp"
                 android:layout_marginStart="10dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
+                android:src="@drawable/ic_baseline_keyboard_double_arrow_left_24"
                 app:layout_constraintBottom_toBottomOf="@id/body_figure"
                 app:layout_constraintTop_toTopOf="@id/body_figure"
                 app:layout_constraintStart_toStartOf="parent" />

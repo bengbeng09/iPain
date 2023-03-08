@@ -114,7 +114,6 @@ public class PTherapistSessionActivity extends AppCompatActivity {
             intent.putExtra("status", status);
             intent.putExtra("therapist", therapist_code);
             startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY);
-            //startActivity(intent);
         });
 
         if(status.equalsIgnoreCase("incomplete")){

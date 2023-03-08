@@ -7,14 +7,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.sklerbidi.therapistmobileapp.R;
 
 public class PTherapistLoadingActivity extends AppCompatActivity {
     String name, code, clinic;
     TextView tv_name;
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://student-theses-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

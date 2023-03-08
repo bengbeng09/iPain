@@ -2,7 +2,6 @@ package com.sklerbidi.therapistmobileapp.Dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -93,9 +92,7 @@ public class DialogChangePass extends AppCompatDialogFragment {
         btn_back.setOnClickListener(v -> {
             AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
             builder2.setMessage("Cancel Reset Password?")
-                    .setPositiveButton("Yes", (dialog, which) -> {
-                        getParentFragmentManager().beginTransaction().remove(DialogChangePass.this).commit();
-                    })
+                    .setPositiveButton("Yes", (dialog, which) -> getParentFragmentManager().beginTransaction().remove(DialogChangePass.this).commit())
                     .setNegativeButton("No", (dialog, which) -> dialog.dismiss());
             AlertDialog alertDialog = builder2.create();
             alertDialog.show();

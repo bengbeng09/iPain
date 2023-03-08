@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.sklerbidi.therapistmobileapp.LoginRegister.RegisterFragment;
 import com.sklerbidi.therapistmobileapp.R;
 
 public class GuestFrontFragment extends Fragment {
@@ -25,21 +24,13 @@ public class GuestFrontFragment extends Fragment {
 
         findView(view);
 
-        btn_left_foot.setOnClickListener(v -> {
-            newActivity("foot");
-        });
+        btn_left_foot.setOnClickListener(v -> newActivity("foot"));
 
-        btn_right_foot.setOnClickListener(v -> {
-            newActivity("foot");
-        });
+        btn_right_foot.setOnClickListener(v -> newActivity("foot"));
 
-        btn_left_knee.setOnClickListener(v -> {
-            newActivity("knee");
-        });
+        btn_left_knee.setOnClickListener(v -> newActivity("knee"));
 
-        btn_right_knee.setOnClickListener(v -> {
-            newActivity("knee");
-        });
+        btn_right_knee.setOnClickListener(v -> newActivity("knee"));
 
         btn_back_figure.setOnClickListener(v -> {
             GuestBackFragment guestBackFragment = new GuestBackFragment();

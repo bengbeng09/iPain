@@ -99,12 +99,12 @@ public class RegisterFragment extends Fragment {
 
                         User user = new User();
                         user.setUsername(username);
-                        user.setUserType(user_type);
-                        user.setLastName(last_name);
-                        user.setFirstName(first_name);
-                        user.setMiddleName(middle_name);
+                        user.setUser_type(user_type);
+                        user.setLast_name(last_name);
+                        user.setFirst_name(first_name);
+                        user.setMiddle_name(middle_name);
                         if(user_type.equals("Clinic Therapist")){
-                            user.setClinicName(clinic_name);
+                            user.setClinic_name(clinic_name);
                         }
                         user.setEmail(email);
                         user.setPassword(password);
@@ -235,11 +235,11 @@ public class RegisterFragment extends Fragment {
 
     public static class User {
         private String username;
-        private String userType;
-        private String lastName;
-        private String firstName;
-        private String middleName;
-        private String clinicName;
+        private String user_type;
+        private String last_name;
+        private String first_name;
+        private String middle_name;
+        private String clinic_name;
         private String email;
         private String password;
 
@@ -253,44 +253,44 @@ public class RegisterFragment extends Fragment {
             this.username = username;
         }
 
-        public String getUserType() {
-            return userType;
+        public String getUser_type() {
+            return user_type;
         }
 
-        public void setUserType(String userType) {
-            this.userType = userType;
+        public void setUser_type(String user_type) {
+            this.user_type = user_type;
         }
 
-        public String getLastName() {
-            return lastName;
+        public String getLast_name() {
+            return last_name;
         }
 
-        public void setLastName(String lastName) {
-            this.lastName = lastName;
+        public void setLast_name(String last_name) {
+            this.last_name = last_name;
         }
 
-        public String getFirstName() {
-            return firstName;
+        public String getFirst_name() {
+            return first_name;
         }
 
-        public void setFirstName(String firstName) {
-            this.firstName = firstName;
+        public void setFirst_name(String first_name) {
+            this.first_name = first_name;
         }
 
-        public String getMiddleName() {
-            return middleName;
+        public String getMiddle_name() {
+            return middle_name;
         }
 
-        public void setMiddleName(String middleName) {
-            this.middleName = middleName;
+        public void setMiddle_name(String middle_name) {
+            this.middle_name = middle_name;
         }
 
-        public String getClinicName() {
-            return clinicName;
+        public String getClinic_name() {
+            return clinic_name;
         }
 
-        public void setClinicName(String clinicName) {
-            this.clinicName = clinicName;
+        public void setClinic_name(String clinic_name) {
+            this.clinic_name = clinic_name;
         }
 
         public String getEmail() {

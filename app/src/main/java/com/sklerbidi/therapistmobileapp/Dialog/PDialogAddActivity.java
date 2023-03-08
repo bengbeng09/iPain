@@ -12,7 +12,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.fragment.app.FragmentResultListener;
 
 import android.provider.MediaStore;
 import android.view.View;
@@ -21,8 +20,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
 
@@ -33,7 +30,6 @@ public class PDialogAddActivity extends AppCompatDialogFragment {
 
     private static final int PICK_IMAGE_REQUEST = 1001;
     EditText et_activity,et_repetition, et_hold, et_complete, et_link, et_therapist;
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://student-theses-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
     ImageView image;
     String user_code;
     Bitmap bitmap;
