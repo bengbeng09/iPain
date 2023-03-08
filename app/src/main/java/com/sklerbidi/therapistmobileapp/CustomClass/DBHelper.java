@@ -17,11 +17,15 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE agreement_table (id INTEGER PRIMARY KEY AUTOINCREMENT, agreed INTEGER)";
         db.execSQL(createTable);
+
+        String createUserTable = "CREATE TABLE user_table (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)";
+        db.execSQL(createUserTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS agreement_table");
+        db.execSQL("DROP TABLE IF EXISTS user_table");
     }
 }
 

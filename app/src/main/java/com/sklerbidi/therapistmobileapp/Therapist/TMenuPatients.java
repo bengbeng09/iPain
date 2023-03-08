@@ -7,11 +7,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +33,7 @@ import com.sklerbidi.therapistmobileapp.R;
 public class TMenuPatients extends Fragment {
 
     FloatingActionButton add_patient;
+    EditText et_search_patient;
     LinearLayout container_patient;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://student-theses-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
 
@@ -74,6 +78,23 @@ public class TMenuPatients extends Fragment {
             TDialogAddPatient TDialogAddPatient = new TDialogAddPatient();
             TDialogAddPatient.setCancelable(false);
             TDialogAddPatient.show(getActivity().getSupportFragmentManager(), "add patient");
+        });
+
+        et_search_patient.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filter_cards(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
         });
 
         return view;
@@ -139,9 +160,25 @@ public class TMenuPatients extends Fragment {
         container_patient.addView(view);
     }
 
+    private void filter_cards(String query) {
+        for (int i = 0; i < container_patient.getChildCount(); i++) {
+            View view = container_patient.getChildAt(i);
+            TextView nameView = view.findViewById(R.id.name);
+
+            String cardDetails = nameView.getText().toString().toUpperCase();
+
+            if (query.isEmpty() || cardDetails.contains(query.toUpperCase())) {
+                view.setVisibility(View.VISIBLE);
+            } else {
+                view.setVisibility(View.GONE);
+            }
+        }
+    }
+
 
     public void findView(View view){
         add_patient = view.findViewById(R.id.btn_add_patient);
         container_patient = view.findViewById(R.id.container_patient);
+        et_search_patient = view.findViewById(R.id.et_search_patient);
     }
 }

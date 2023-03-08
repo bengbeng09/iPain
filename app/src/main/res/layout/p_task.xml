@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/linear_layout_vertical"
+    android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".Patient.PTasksActivity">
 
     <Button
+        android:layout_margin="20dp"
         android:layout_width="30dp"
-        android:layout_margin="15dp"
+        android:paddingLeft="7dp"
         android:id="@+id/btn_back"
         android:layout_alignParentTop="true"
         android:drawableEnd="@drawable/ic_baseline_arrow_back_ios_24"

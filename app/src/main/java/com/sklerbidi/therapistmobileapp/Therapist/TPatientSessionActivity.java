@@ -183,6 +183,6 @@ public class TPatientSessionActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Do nothing
+        finish();
     }
 }

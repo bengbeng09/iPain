@@ -1,6 +1,8 @@
 package com.sklerbidi.therapistmobileapp.LoginRegister;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
+import com.sklerbidi.therapistmobileapp.CustomClass.DBHelper;
 import com.sklerbidi.therapistmobileapp.Dialog.DialogChangePass;
 import com.sklerbidi.therapistmobileapp.Dialog.DialogForgotPass;
 import com.sklerbidi.therapistmobileapp.Guest.GuestActivity;
@@ -33,6 +37,7 @@ public class LoginFragment extends Fragment {
     TextView tv_create_account, tv_forgot_password;
     EditText et_username, et_password;
     LinearLayout container_login;
+    CheckBox cb_remember;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://student-theses-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,6 +89,20 @@ public class LoginFragment extends Fragment {
                                         {"email", user.getEmail()}
                                 };
 
+                                if(cb_remember.isChecked()){
+                                    ContentValues values = new ContentValues();
+                                    values.put("id", 1);
+                                    values.put("username", username);
+                                    values.put("password", password);
+
+                                    DBHelper dbHelper = new DBHelper(getContext());
+                                    SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+                                    db.replace("user_table", null, values);
+
+                                    db.close();
+                                }
+
                                 Intent intent = new Intent(getActivity(), ActivityNavigation.class);
 
                                 for (String[] pair : data) {
@@ -120,6 +139,8 @@ public class LoginFragment extends Fragment {
             Intent intent = new Intent(getActivity(), GuestActivity.class);
 
             startActivity(intent);
+
+            toast("Guest Login");
 
             if (getActivity() != null) {
                 getActivity().finish();
@@ -223,5 +244,6 @@ public class LoginFragment extends Fragment {
         et_username = view.findViewById(R.id.et_username);
         et_password = view.findViewById(R.id.et_password);
         tv_forgot_password = view.findViewById(R.id.tv_forgot_password);
+        cb_remember = view.findViewById(R.id.cb_remember_me);
     }
 }

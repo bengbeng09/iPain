@@ -107,7 +107,7 @@ public class PTasksActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Do nothing
+        finish();
     }
 
     private void findView(){

@@ -8,10 +8,20 @@
     android:background="@drawable/bg"
     tools:context=".LoginRegister.LoginActivity">
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_above="@+id/card_login"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ipain_logo_transparent" />
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_login"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginTop="25dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp"
         android:layout_centerInParent="true">

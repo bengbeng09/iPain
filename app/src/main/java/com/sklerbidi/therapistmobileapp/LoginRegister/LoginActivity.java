@@ -1,15 +1,22 @@
 package com.sklerbidi.therapistmobileapp.LoginRegister;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sklerbidi.therapistmobileapp.CustomClass.DBHelper;
 import com.sklerbidi.therapistmobileapp.Dialog.DialogAbout;
 import com.sklerbidi.therapistmobileapp.R;
+
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -71,7 +78,38 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Do nothing
+
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+
+        Fragment[] fragments = {
+                fragmentManager.findFragmentByTag("login"), fragmentManager.findFragmentByTag("register")};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        for (Fragment fragment : fragments) {
+            if (fragment != null && fragment.isVisible()) {
+                switch (Objects.requireNonNull(fragment.getTag())) {
+                    case "login":
+                        builder.setMessage("Exit?")
+                                .setPositiveButton("Yes", (dialog, which) -> {
+                                    this.finishAffinity();
+                                })
+                                .setNegativeButton("No", (dialog, which) -> dialog.dismiss());
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
+                        break;
+                    case "register":
+                        builder.setMessage("Cancel Registration?")
+                                .setPositiveButton("Yes", (dialog, which) -> {
+                                   this.recreate();
+                                })
+                                .setNegativeButton("No", (dialog, which) -> dialog.dismiss());
+
+                        break;
+                }
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        }
     }
 
     private void findView(){

@@ -77,8 +77,16 @@ public class RegisterFragment extends Fragment {
                             }
                         }
 
-                        if (username.length() < 7) {
-                            toast("Username must be at least 8 characters");
+                        if (!username.matches("^[a-zA-Z0-9](_(?!([._]))|\\.(?!([_.]))|[a-zA-Z0-9]){8,18}[a-zA-Z0-9]$")) {
+                            if (username.length() < 8 || username.length() > 18) {
+                                toast("Username must be between 8 and 18 characters long");
+                            } else if (!username.matches("[a-zA-Z0-9._]+")) {
+                                toast("Username can only contain alphanumeric characters, dots, or underscores");
+                            } else if (username.startsWith(".") || username.startsWith("_") || username.endsWith(".") || username.endsWith("_")) {
+                                toast("Username cannot start or end with a dot or underscore");
+                            } else {
+                                toast("Username must contain at least one alphanumeric character");
+                                }
                             return;
                         }
 

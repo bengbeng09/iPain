@@ -144,7 +144,7 @@ public class PTherapistSessionActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Do nothing
+        finish();
     }
 
     private void findView(){

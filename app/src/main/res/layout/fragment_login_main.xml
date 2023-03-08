@@ -41,13 +41,36 @@
                 android:inputType="textPassword"
                 android:layout_gravity="center_horizontal"
                 android:hint="Password" />
-
-            <TextView
-                style="@style/text_size_0_blue"
-                android:id="@+id/tv_forgot_password"
+            
+            <LinearLayout
+                style="@style/linear_layout_horizontal"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="5dp"
-                android:text="Forgot Password?"/>
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+                <CheckBox
+                    style="@style/text_size_0"
+                    android:layout_weight="1"
+                    android:width="0dp"
+                    android:button="@drawable/checkbox_bg"
+                    android:id="@+id/cb_remember_me"
+                    android:textAlignment="textStart"
+                    android:layout_width="wrap_content"
+                    android:textColor="#434343"
+                    android:text="Remember Me" />
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    style="@style/text_size_0_blue"
+                    android:id="@+id/tv_forgot_password"
+                    android:layout_marginStart="5dp"
+                    android:textAlignment="textEnd"
+                    android:text="Forgot Password?"/>
+
+            </LinearLayout>
+
+
 
             <Button
                 style="@style/button"

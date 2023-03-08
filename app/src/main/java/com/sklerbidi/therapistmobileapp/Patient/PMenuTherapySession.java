@@ -1,5 +1,7 @@
 package com.sklerbidi.therapistmobileapp.Patient;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -7,16 +9,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.TextAppearanceSpan;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -184,9 +195,10 @@ public class PMenuTherapySession extends Fragment {
 
 
     private void add_card(String firstname, String lastname, String user_code, String clinic){
-        View view = getLayoutInflater().inflate(R.layout.layout_card, null);
+        View view = getLayoutInflater().inflate(R.layout.layout_card_remove, null);
 
         TextView nameView = view.findViewById(R.id.name);
+        Button remove = view.findViewById(R.id.btnRemove);
         Button show = view.findViewById(R.id.btnView);
         String cardDetails = firstname.toUpperCase() + " " + lastname.toUpperCase();
         nameView.setText(cardDetails);
@@ -197,6 +209,82 @@ public class PMenuTherapySession extends Fragment {
             intent.putExtra("code", user_code);
             intent.putExtra("clinic", clinic);
             startActivity(intent);
+        });
+
+        remove.setOnClickListener(v -> {
+
+            databaseReference.child("users").child(ActivityNavigation.user_code).child("password").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                    String password = snapshot.getValue(String.class);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.MyAlertDialogStyle);
+
+                    float titleTextSize = 1.1f;
+                    float messageTextSize = 1.1f;
+                    final EditText passwordInput = new EditText(getActivity());
+
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    );
+
+                    params.setMargins(30, 0, 30, 0);
+
+                    passwordInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    passwordInput.setPadding(20, 0, 20, 0);
+                    passwordInput.setHeight(45);
+                    passwordInput.setGravity(Gravity.CENTER_VERTICAL);
+                    passwordInput.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    passwordInput.setTextSize(12);
+                    passwordInput.setLayoutParams(params);
+                    passwordInput.setBackground(getResources().getDrawable(R.drawable.button_round_outlined_red));
+
+
+                    LinearLayout linearLayout = new LinearLayout(getActivity());
+                    linearLayout.setLayoutParams(params);
+                    linearLayout.addView(passwordInput);
+
+                    SpannableStringBuilder titleBuilder = new SpannableStringBuilder("Remove Therapist");
+                    titleBuilder.setSpan(new RelativeSizeSpan(titleTextSize/ getResources().getDisplayMetrics().scaledDensity), 0, titleBuilder.length(), 0);
+
+                    SpannableStringBuilder messageBuilder = new SpannableStringBuilder("This will remove therapist and all their associated activities. \n \nEnter account password for confirmation:\n");
+                    messageBuilder.setSpan(new RelativeSizeSpan(messageTextSize/ getResources().getDisplayMetrics().scaledDensity), 0, messageBuilder.length(), 0);
+
+                    builder.setView(linearLayout)
+                            .setMessage(messageBuilder)
+                            .setTitle(titleBuilder)
+                            .setPositiveButton("Delete", (dialog, id) -> {
+                                String input = passwordInput.getText().toString();
+                                if (input.equals(password)) {
+                                    // Password is correct, perform deletion
+                                    databaseReference.child("users").child(ActivityNavigation.user_code).child("therapists").child(user_code).removeValue()
+                                            .addOnSuccessListener(aVoid -> Log.wtf("wtf", "success"))
+                                            .addOnFailureListener(e -> Log.wtf("wtf", "failed:" + e));
+
+                                    databaseReference.child("users").child(user_code).child("patients").child(ActivityNavigation.user_code).removeValue()
+                                            .addOnSuccessListener(aVoid -> Log.wtf("wtf", "success"))
+                                            .addOnFailureListener(e -> Log.wtf("wtf", "failed:" + e));
+
+                                    Toast.makeText(getActivity(), "Therapist removed successfully", Toast.LENGTH_SHORT).show();
+                                    set_card();
+                                } else {
+                                    // Password is incorrect, show error message
+                                    Toast.makeText(getActivity(), "Incorrect password. Please try again.", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getActivity(), "Internal Error", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
         });
 
         container_therapist.addView(view);
