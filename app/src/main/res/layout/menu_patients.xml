@@ -20,7 +20,7 @@
         android:textColor="@color/black" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_username"
+        android:id="@+id/et_search_patient"
         style="@style/edit_text_outlined_gray"
         android:layout_below="@+id/title_text"
         android:layout_marginStart="30dp"
@@ -32,7 +32,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_below="@+id/et_username"
+        android:layout_below="@+id/et_search_patient"
         android:layout_height="match_parent">
 
         <LinearLayout

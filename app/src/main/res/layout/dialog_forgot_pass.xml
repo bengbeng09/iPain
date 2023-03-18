@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".Dialog.DialogForgotPass">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="30dp"
+            android:id="@+id/btn_back"
+            android:drawableEnd="@drawable/ic_baseline_arrow_back_ios_24"
+            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginBottom="20dp"
+            android:layout_height="30dp"/>
+
+        <TextView
+            style="@style/text_size_2_bold"
+            android:layout_marginBottom="20dp"
+            android:text="FORGOT PASSWORD" />
+
+        <LinearLayout
+            android:id="@+id/container_email"
+            style="@style/linear_layout_vertical">
+
+            <TextView
+                style="@style/text_size_0"
+                android:textAlignment="textStart"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="Enter registered email to receive an OTP:"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_email"
+                    style="@style/edit_text_outlined"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingLeft="10dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"/>
+
+                <Button
+                    android:layout_width="45dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="0"
+                    android:id="@+id/btn_send_email"
+                    android:drawableEnd="@drawable/ic_baseline_send_24"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:paddingEnd="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="?android:attr/selectableItemBackground"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linear_layout_vertical"
+            android:visibility="gone"
+            android:id="@+id/container_code">
+            <TextView
+                style="@style/text_size_0"
+                android:textAlignment="textStart"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="Enter one-time password:"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_code"
+                style="@style/edit_text_outlined"
+                android:textAlignment="center"
+                android:maxLength="6"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                style="@style/text_size_0"
+                android:id="@+id/tv_invalid_code"
+                android:visibility="gone"
+                android:textAlignment="textStart"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/red_text"
+                android:text="Entered code is invalid"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linear_layout_vertical"
+            android:visibility="gone"
+            android:id="@+id/container_new_pass">
+
+            <TextView
+                style="@style/text_size_0"
+                android:textAlignment="textStart"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:text="New Password:"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_new_password"
+                style="@style/edit_text_outlined"
+                android:paddingLeft="10dp"
+                android:inputType="textPassword"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                style="@style/text_size_0"
+                android:textAlignment="textStart"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:text="Re-type New Password:"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_retype_new_password"
+                style="@style/edit_text_outlined"
+                android:paddingLeft="10dp"
+                android:inputType="textPassword"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+        <Button
+            style="@style/button"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:id="@+id/btn_submit"
+            android:text="SUBMIT"/>
+    </LinearLayout>
+</LinearLayout>

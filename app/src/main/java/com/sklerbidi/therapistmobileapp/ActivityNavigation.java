@@ -1,3 +1,10 @@
+/*
+This class is for navigation menu that allows the user to navigate between different fragments in the application.
+The navigation menu is implemented using a DrawerLayout and a NavigationView. The class also sets the initial
+fragment to be displayed when the application is launched, based on the user's role, and handles user selection of
+menu items by replacing the fragment in the container with the selected fragment. Additionally, the class retrieves
+user information passed via an Intent and stores it in static variables.
+ */
 package com.sklerbidi.therapistmobileapp;
 
 import androidx.annotation.NonNull;
@@ -7,9 +14,9 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,8 +30,7 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
 
     public DrawerLayout drawerLayout;
     public static NavigationView navigationView;
-    public static String username, user_type;
-    Bundle bundle;
+    public static String username, user_type, user_code,firstname, lastname, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +50,12 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
+            user_code = extras.getString("user_code");
             user_type = extras.getString("user_type");
             username = extras.getString("username");
+            firstname = extras.getString("first_name");
+            lastname = extras.getString("last_name");
+            email = extras.getString("email");
         }
 
         set_item(user_type);
@@ -62,10 +72,6 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
     {
         Menu nav_Menu = navigationView.getMenu();
         switch (type){
-            case "Regular User":
-                nav_Menu.findItem(R.id.navigation_patients).setVisible(false);
-                nav_Menu.findItem(R.id.navigation_therapy_session).setVisible(false);
-                break;
             case "Clinic Therapist":
                 nav_Menu.findItem(R.id.navigation_therapy_session).setVisible(false);
                 break;
@@ -77,33 +83,37 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
 
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+        Fragment selectedFragment;
 
         switch (item.getItemId()) {
-
             case R.id.navigation_dashboard:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MenuDashboard()).commit();
-                getFragmentManager().beginTransaction();
-
+                selectedFragment = new MenuDashboard();
                 break;
             case R.id.navigation_therapy_session:
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PMenuTherapySession()).commit();
-                getFragmentManager().beginTransaction();
+                selectedFragment = new PMenuTherapySession();
                 break;
             case R.id.navigation_patients:
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TMenuPatients()).commit();
-                getFragmentManager().beginTransaction();
+                selectedFragment = new TMenuPatients();
                 break;
             case R.id.navigation_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MenuSettings()).commit();
-                getFragmentManager().beginTransaction();
+                selectedFragment = new MenuSettings();
                 break;
             default:
                 return false;
-
         }
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, selectedFragment)
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+                .commit();
+
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Do nothing
     }
 }

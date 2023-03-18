@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Therapist.TPatientSessionActivity">
 
+
     <LinearLayout
         android:id="@+id/layout_1"
         android:padding="20dp"
@@ -46,12 +47,14 @@
 
     <ScrollView
         android:layout_below="@id/layout_1"
+        android:layout_marginBottom="20dp"
         style="@style/scroll_layout_main">
         <LinearLayout
             android:id="@+id/container_activity"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="40dp"
             android:layout_marginStart="40dp"
+            android:paddingBottom="40dp"
             style="@style/layout_linear_vertical">
         </LinearLayout>
 

@@ -51,7 +51,7 @@
             <Button
                 style="@style/button"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="50dp"
                 android:id="@+id/btn_next1"
                 android:text="NEXT"/>
 
@@ -132,6 +132,7 @@
 
             <TextView
                 style="@style/text_size_0"
+                android:id="@+id/tvl_clinic_name"
                 android:textAlignment="textStart"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
@@ -161,7 +162,7 @@
             <Button
                 style="@style/button"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="50dp"
                 android:id="@+id/btn_next2"
                 android:text="NEXT"/>
 
@@ -237,7 +238,7 @@
         <Button
             style="@style/button"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="50dp"
             android:id="@+id/btn_finish"
             android:text="FINISH"/>
 
