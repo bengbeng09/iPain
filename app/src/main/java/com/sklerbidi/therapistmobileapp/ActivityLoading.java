@@ -1,18 +1,22 @@
+/*
+This class is used for checking if a user's login details are saved on the device,
+and if so, it attempts to log the user in automatically. The code retrieves the saved
+login details from a local SQLite database and checks if the username exists in the
+Firebase Realtime Database. If the user exists and the password matches, the code
+starts the main navigation Activity after a short delay. If the user does not exist or
+the password is incorrect, the code displays an error message and starts the login Activity after a short delay.
+ */
+
 package com.sklerbidi.therapistmobileapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -24,8 +28,6 @@ import com.sklerbidi.therapistmobileapp.CustomClass.DBHelper;
 import com.sklerbidi.therapistmobileapp.Guest.GuestActivity;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginFragment;
-import com.sklerbidi.therapistmobileapp.Patient.PTherapistLoadingActivity;
-import com.sklerbidi.therapistmobileapp.Patient.PTherapistSessionActivity;
 
 public class ActivityLoading extends AppCompatActivity {
 

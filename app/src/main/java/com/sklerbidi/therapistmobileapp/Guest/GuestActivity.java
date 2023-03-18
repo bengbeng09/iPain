@@ -1,3 +1,8 @@
+
+/*
+This class is responsible for displaying the UI of the guest feature, and provides the user with the ability to logout and exit the application.
+ */
+
 package com.sklerbidi.therapistmobileapp.Guest;
 
 import androidx.appcompat.app.AppCompatActivity;

@@ -1,3 +1,8 @@
+/*
+This class is used to display a specific task for a patient, including information about the
+task's name, repetition, hold, completion, notes, and an image of the task.
+ */
+
 package com.sklerbidi.therapistmobileapp.Patient;
 
 import androidx.annotation.NonNull;
@@ -11,7 +16,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;

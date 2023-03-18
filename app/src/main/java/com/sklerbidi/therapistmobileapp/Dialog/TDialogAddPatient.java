@@ -1,3 +1,9 @@
+
+/*
+This custom Dialog allows a user to select a patient from a list of clinic patients
+and add them to the list of patients for the current clinic.
+ */
+
 package com.sklerbidi.therapistmobileapp.Dialog;
 
 import android.app.AlertDialog;

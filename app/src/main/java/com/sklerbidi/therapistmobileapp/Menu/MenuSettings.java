@@ -1,3 +1,9 @@
+
+/*
+This this class provides a simple UI for the user to view their information and
+perform common actions, logging out or changing their password.
+ */
+
 package com.sklerbidi.therapistmobileapp.Menu;
 
 import android.app.AlertDialog;

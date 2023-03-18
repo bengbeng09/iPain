@@ -1,3 +1,6 @@
+
+//This is a model class used to represent user information
+
 package com.sklerbidi.therapistmobileapp.CustomClass;
 
 public class UserInfo {

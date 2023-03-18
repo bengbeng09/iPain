@@ -1,3 +1,5 @@
+// This is a custom class for the sender gmail account to be used in JavaMailAPI
+
 package com.sklerbidi.therapistmobileapp.CustomClass;
 
 public class JavaMailAccount {

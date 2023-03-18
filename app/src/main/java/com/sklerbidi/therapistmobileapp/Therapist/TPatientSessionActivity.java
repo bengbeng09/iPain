@@ -1,3 +1,8 @@
+/*
+ This class provides the functionality to add activities to a patient's session,
+ display those activities as cards, and upload an image of the activity to the Firebase Storage.
+ */
+
 package com.sklerbidi.therapistmobileapp.Therapist;
 
 import android.annotation.SuppressLint;

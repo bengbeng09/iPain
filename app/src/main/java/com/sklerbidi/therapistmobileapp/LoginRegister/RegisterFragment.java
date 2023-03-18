@@ -1,10 +1,11 @@
+/*
+ This class validates the input fields before registering a user, including checking if a username or
+ email is already taken, if the password matches and meets certain criteria, and if the user type
+ is valid. The code uses Firebase Realtime Database to store user data. The form also includes
+ buttons to navigate through different sections of the form and a button to register a new user.
+ */
 package com.sklerbidi.therapistmobileapp.LoginRegister;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;

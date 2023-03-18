@@ -1,3 +1,10 @@
+
+/*
+I displays a list of exercises for the selected parts the body. Each exercise is shown as a
+CardView with information about it. It sets up the CardViews to respond to clicks by launching a
+new screen with more information about the exercise.
+ */
+
 package com.sklerbidi.therapistmobileapp.Guest;
 
 import androidx.appcompat.app.AppCompatActivity;

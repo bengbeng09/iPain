@@ -1,3 +1,6 @@
+
+// This is a custom class for sending email messages using Gmail SMTP server in an Android app using the JavaMail API.
+
 package com.sklerbidi.therapistmobileapp.CustomClass;
 
 import android.app.ProgressDialog;

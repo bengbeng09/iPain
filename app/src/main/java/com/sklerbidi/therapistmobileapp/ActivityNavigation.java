@@ -1,3 +1,10 @@
+/*
+This class is for navigation menu that allows the user to navigate between different fragments in the application.
+The navigation menu is implemented using a DrawerLayout and a NavigationView. The class also sets the initial
+fragment to be displayed when the application is launched, based on the user's role, and handles user selection of
+menu items by replacing the fragment in the container with the selected fragment. Additionally, the class retrieves
+user information passed via an Intent and stores it in static variables.
+ */
 package com.sklerbidi.therapistmobileapp;
 
 import androidx.annotation.NonNull;

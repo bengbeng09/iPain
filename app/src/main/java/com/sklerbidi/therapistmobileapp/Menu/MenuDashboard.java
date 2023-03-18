@@ -1,3 +1,10 @@
+
+/*
+This class sets up a dashboard view for the user, depending on the type of user.
+The view displays different information for therapists and patients, and retrieves
+data from a Firebase Realtime Database.
+ */
+
 package com.sklerbidi.therapistmobileapp.Menu;
 
 import android.os.Bundle;

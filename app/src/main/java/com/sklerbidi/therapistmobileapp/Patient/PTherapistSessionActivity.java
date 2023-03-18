@@ -1,3 +1,8 @@
+/*
+The code shows therapist session details including activities, their status (complete/incomplete), and related data.
+The user can click on the card for each activity to access more details about it.
+ */
+
 package com.sklerbidi.therapistmobileapp.Patient;
 
 import androidx.annotation.NonNull;

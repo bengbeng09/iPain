@@ -1,3 +1,8 @@
+/*
+This is a custom dialog fragment class for the "About" dialog box in the therapist mobile app.
+It displays the terms and conditions of the app, and provides the option to agree or decline.
+ */
+
 package com.sklerbidi.therapistmobileapp.Dialog;
 
 import android.app.AlertDialog;
@@ -39,9 +44,10 @@ public class DialogAbout extends AppCompatDialogFragment {
             tv_decline.setVisibility(View.GONE);
         }
 
-
+        // Set the click listener for the agree button
         btn_agree.setOnClickListener(v -> {
             if(btn_agree.getText() != "OK"){
+                // If the user agrees, insert the agreement status into the database
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("agreed", 1);
                 DBHelper dbHelper = new DBHelper(getContext());
@@ -52,6 +58,7 @@ public class DialogAbout extends AppCompatDialogFragment {
             getParentFragmentManager().beginTransaction().remove(DialogAbout.this).commit();
         });
 
+        // Set the click listener for the decline button
         tv_decline.setOnClickListener(v -> {
             if(getActivity() != null){
                 getActivity().finishAffinity();

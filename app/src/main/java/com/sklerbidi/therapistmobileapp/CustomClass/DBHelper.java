@@ -1,3 +1,7 @@
+
+// This is a custom class for creating and managing the SQLite database in the therapist mobile app.
+// This will be used for storing saved accounts and whether the user has agreed to the app's terms or not
+
 package com.sklerbidi.therapistmobileapp.CustomClass;
 
 import android.content.Context;
@@ -15,6 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         String createTable = "CREATE TABLE agreement_table (id INTEGER PRIMARY KEY AUTOINCREMENT, agreed INTEGER)";
         db.execSQL(createTable);
 

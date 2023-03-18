@@ -1,20 +1,19 @@
+
+/*
+This class is used to display information about a selected exercise, including an image of the exercise.
+It receives data from the previous screen and sets up the layout accordingly.
+ */
+
 package com.sklerbidi.therapistmobileapp.Guest;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.app.AlertDialog;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
-import com.sklerbidi.therapistmobileapp.Dialog.DialogAbout;
-import com.sklerbidi.therapistmobileapp.Dialog.DialogAdvice;
 import com.sklerbidi.therapistmobileapp.R;
 
 import java.util.HashMap;

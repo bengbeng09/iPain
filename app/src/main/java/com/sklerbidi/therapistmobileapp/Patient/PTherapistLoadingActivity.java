@@ -1,3 +1,5 @@
+//Loading screen for a patient's therapist
+
 package com.sklerbidi.therapistmobileapp.Patient;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,9 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
 
 public class PTherapistLoadingActivity extends AppCompatActivity {

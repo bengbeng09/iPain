@@ -1,9 +1,10 @@
+
+//This is a custom dialog fragment class for the "Advice" for guest user
+
 package com.sklerbidi.therapistmobileapp.Dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,9 +13,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
-import com.sklerbidi.therapistmobileapp.CustomClass.DBHelper;
 import com.sklerbidi.therapistmobileapp.R;
 
 
@@ -30,6 +29,7 @@ public class DialogAdvice extends AppCompatDialogFragment {
 
         findView(view);
 
+        // When the continue button is clicked, remove this dialog from the fragment manager
         btn_continue.setOnClickListener(v -> {
             getParentFragmentManager().beginTransaction().remove(DialogAdvice.this).commit();
         });

@@ -1,11 +1,16 @@
+/*
+This class is used for the login screen that allows users to enter their username and password.
+It also includes buttons for logging in as a guest or creating a new account, as well as checkboxes
+for remembering the user's login information and a progress bar to show that the app is processing
+the user's request. It uses Firebase Realtime Database to store and retrieve user data.
+ */
+
+
 package com.sklerbidi.therapistmobileapp.LoginRegister;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -57,14 +62,16 @@ public class LoginFragment extends Fragment {
             final String username = et_username.getText().toString();
             final String password = et_password.getText().toString();
 
+            // Check if the fields are not empty
             if(LoginActivity.isNotEmpty(new String[]{username, password})){
 
-
+                // Check if the device is connected to internet
                 if(getContext() != null & !LoginActivity.isNetworkConnected(getContext())){
                     Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                // Access the Firebase database and look for the entered username
                 databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -72,6 +79,7 @@ public class LoginFragment extends Fragment {
                         boolean usernameExists = false;
                         User user = new User();
 
+                        // Loop through the child nodes and look for the username
                         for (DataSnapshot userSnapshot : snapshot.getChildren()) {
                             String username_check = userSnapshot.child("username").getValue(String.class);
 
@@ -88,9 +96,10 @@ public class LoginFragment extends Fragment {
                         }
 
                         if(usernameExists){
-
+                            // Check if the entered password is correct
                             if(user.getPassword() != null && user.getPassword().equals(password)){
 
+                                // Store the user data in an array and pass it to the next activity
                                 String[][] data = {
                                         {"username", username},
                                         {"user_type", user.getUserType()},

@@ -1,3 +1,10 @@
+/*
+This class utilizes Firebase Realtime Database to store and retrieve patient data,
+and provides methods for adding patients, setting up patient cards, and filtering
+patient cards based on search queries.
+ */
+
+
 package com.sklerbidi.therapistmobileapp.Therapist;
 
 import android.annotation.SuppressLint;
@@ -9,7 +16,6 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

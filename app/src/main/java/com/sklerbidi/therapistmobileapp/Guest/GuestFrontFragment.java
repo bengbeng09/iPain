@@ -1,3 +1,8 @@
+/*
+This class represents the front side of a human body.
+It allows the user to select a body part and navigate to a corresponding exercise activity.
+ */
+
 package com.sklerbidi.therapistmobileapp.Guest;
 
 import android.content.Intent;

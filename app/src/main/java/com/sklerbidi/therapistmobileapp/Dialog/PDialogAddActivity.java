@@ -1,3 +1,10 @@
+
+/*
+This is a custom dialog fragment for adding an activity for a therapist's patient.
+The dialog contains various EditText fields for entering details about the activity
+such as its name, repetition, hold, completion, link, and therapist's note. It also
+has an ImageView for uploading an image related to the activity.
+ */
 package com.sklerbidi.therapistmobileapp.Dialog;
 
 import static android.app.Activity.RESULT_OK;

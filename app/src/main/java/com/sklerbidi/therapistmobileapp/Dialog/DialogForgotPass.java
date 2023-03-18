@@ -1,3 +1,13 @@
+
+/*
+This is a custom dialog fragment class for for forgot password dialog box in the therapist mobile app.
+
+The user is asked to provide their email address, and if it exists in the Firebase Realtime Database,
+a randomly generated reset code is sent to the user's email address. The user is then prompted to enter
+the reset code sent to their email. If the entered reset code matches the generated one, the user is prompted
+to enter a new password twice, and if the two passwords match, the user's password is updated in the database.
+ */
+
 package com.sklerbidi.therapistmobileapp.Dialog;
 
 import android.app.AlertDialog;
