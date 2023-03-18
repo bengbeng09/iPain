@@ -1,5 +1,10 @@
 package com.sklerbidi.therapistmobileapp.LoginRegister;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,6 +65,12 @@ public class RegisterFragment extends Fragment {
             final String reenter_password = et_reenter_password.getText().toString();
 
             if(LoginActivity.isNotEmpty(new String[]{user_type,last_name, first_name, middle_name, email, username, password, reenter_password})){
+
+                if(getContext() != null & !LoginActivity.isNetworkConnected(getContext())){
+                    Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -125,7 +138,8 @@ public class RegisterFragment extends Fragment {
 
                         if(fragment != null){
                             getActivity().getSupportFragmentManager().beginTransaction()
-                                    .replace(((ViewGroup)getView().getParent()).getId(), fragment)
+                                    .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
+                                    .replace(((ViewGroup) getView().getParent()).getId(), fragment)
                                     .remove(RegisterFragment.this)
                                     .commit();
                         }
@@ -147,7 +161,7 @@ public class RegisterFragment extends Fragment {
 
     public void layout_controls(){
 
-        changeView(1);
+        changeView(0,1);
 
         setSpinner(spinner_user_type, getResources().getStringArray(R.array.user_type));
 
@@ -155,6 +169,7 @@ public class RegisterFragment extends Fragment {
             Fragment fragment= getParentFragmentManager().findFragmentByTag("login");
             if(fragment != null){
                 getActivity().getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
                         .replace(((ViewGroup)getView().getParent()).getId(), fragment)
                         .addToBackStack(null)
                         .commit();
@@ -164,9 +179,9 @@ public class RegisterFragment extends Fragment {
 
         });
 
-        btn_back_signup2.setOnClickListener(view -> changeView(1));
+        btn_back_signup2.setOnClickListener(view -> changeView(2,1));
 
-        btn_back_signup3.setOnClickListener(view -> changeView(2));
+        btn_back_signup3.setOnClickListener(view -> changeView(3,2));
 
         btn_next_signup1.setOnClickListener(view -> {
             if(LoginActivity.isNotEmpty(new String[]{spinner_user_type.getSelectedItem().toString()})){
@@ -177,11 +192,10 @@ public class RegisterFragment extends Fragment {
                     et_clinic_name.setVisibility(View.GONE);
                     tv_clinic.setVisibility(View.GONE);
                 }
-                changeView(2);
+                changeView(1,2);
             }else{
                 toast("Select account type");
             }
-
         });
 
         btn_next_signup2.setOnClickListener(view -> {
@@ -190,7 +204,7 @@ public class RegisterFragment extends Fragment {
                 if(spinner_user_type.getSelectedItem().toString().equals("Clinic Therapist")){
                     if(LoginActivity.isNotEmpty(new String[]{et_clinic_name.getText().toString()})){
                         if (android.util.Patterns.EMAIL_ADDRESS.matcher(et_email.getText().toString()).matches()) {
-                            changeView(3);
+                            changeView(2,3);
                         }else{
                             toast("Invalid email");
                         }
@@ -199,7 +213,7 @@ public class RegisterFragment extends Fragment {
                     }
                 }else{
                     if (android.util.Patterns.EMAIL_ADDRESS.matcher(et_email.getText().toString()).matches()) {
-                        changeView(3);
+                        changeView(2,3);
                     }else{
                         toast("Invalid email");
                     }
@@ -212,22 +226,54 @@ public class RegisterFragment extends Fragment {
         });
     }
 
-    public void changeView(int num){
-        switch (num){
+    public void changeView(int from, int to){
+        Animation slideOutAnim;
+        Animation slideInAnim;
+        switch (to){
             case 1:
-                container_signup_1.setVisibility(View.VISIBLE);
-                container_signup_2.setVisibility(View.GONE);
-                container_signup_3.setVisibility(View.GONE);
+                if(from == 2){
+                    slideOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_right);
+                    container_signup_2.startAnimation(slideOutAnim);
+                    container_signup_2.setVisibility(View.GONE);
+
+                    slideInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left);
+                    container_signup_1.startAnimation(slideInAnim);
+                    container_signup_1.setVisibility(View.VISIBLE);
+                }else{
+                    container_signup_2.setVisibility(View.VISIBLE);
+                    container_signup_2.setVisibility(View.GONE);
+                    container_signup_3.setVisibility(View.GONE);
+                }
                 break;
             case 2:
-                container_signup_1.setVisibility(View.GONE);
-                container_signup_2.setVisibility(View.VISIBLE);
-                container_signup_3.setVisibility(View.GONE);
+                if(from == 1){
+                    slideInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_left);
+                    container_signup_1.startAnimation(slideInAnim);
+                    container_signup_1.setVisibility(View.GONE);
+
+                    slideOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_right);
+                    container_signup_2.startAnimation(slideOutAnim);
+                    container_signup_2.setVisibility(View.VISIBLE);
+                }else{
+                    slideInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_right);
+                    container_signup_3.startAnimation(slideInAnim);
+                    container_signup_3.setVisibility(View.GONE);
+
+                    slideOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left);
+                    container_signup_2.startAnimation(slideOutAnim);
+                    container_signup_2.setVisibility(View.VISIBLE);
+                }
                 break;
             case 3:
-                container_signup_1.setVisibility(View.GONE);
-                container_signup_2.setVisibility(View.GONE);
-                container_signup_3.setVisibility(View.VISIBLE);
+                if(from == 2){
+                    slideInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_left);
+                    container_signup_2.startAnimation(slideInAnim);
+                    container_signup_2.setVisibility(View.GONE);
+
+                    slideOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_right);
+                    container_signup_3.startAnimation(slideOutAnim);
+                    container_signup_3.setVisibility(View.VISIBLE);
+                }
                 break;
         }
     }

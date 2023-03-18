@@ -37,13 +37,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -56,6 +56,17 @@
                 android:text="@string/shoulder_shrugs_desc" />
 
           </LinearLayout>
+
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/shoulder_shrug">
+
+          </ImageView>
 
 
         </LinearLayout>
@@ -70,13 +81,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -90,6 +101,17 @@
 
           </LinearLayout>
 
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/low_row">
+
+          </ImageView>
+
         </LinearLayout>
 
       </androidx.cardview.widget.CardView>
@@ -102,13 +124,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -122,6 +144,16 @@
 
           </LinearLayout>
 
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/uppercut">
+
+          </ImageView>
 
         </LinearLayout>
 
@@ -135,13 +167,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -154,6 +186,17 @@
                 android:text="@string/scalene_stretch_desc" />
 
           </LinearLayout>
+
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/scalene_stretch">
+
+          </ImageView>
 
         </LinearLayout>
 
@@ -178,13 +221,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -198,6 +241,17 @@
 
           </LinearLayout>
 
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/partial_sit_up">
+
+          </ImageView>
+
         </LinearLayout>
 
       </androidx.cardview.widget.CardView>
@@ -210,13 +264,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -230,6 +284,17 @@
 
           </LinearLayout>
 
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/lumbar_rocks">
+
+          </ImageView>
+
         </LinearLayout>
 
       </androidx.cardview.widget.CardView>
@@ -242,13 +307,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -262,6 +327,17 @@
 
           </LinearLayout>
 
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/dead_bugs">
+
+          </ImageView>
+
         </LinearLayout>
 
       </androidx.cardview.widget.CardView>
@@ -274,13 +350,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -294,6 +370,17 @@
 
           </LinearLayout>
 
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/bird_dog">
+
+          </ImageView>
+
         </LinearLayout>
 
       </androidx.cardview.widget.CardView>
@@ -306,13 +393,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -326,13 +413,22 @@
 
           </LinearLayout>
 
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/superman">
+
+          </ImageView>
+
         </LinearLayout>
 
       </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-
-
 
 
     <LinearLayout
@@ -351,13 +447,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -371,6 +467,17 @@
 
           </LinearLayout>
 
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/wall_squat">
+
+          </ImageView>
+
         </LinearLayout>
 
       </androidx.cardview.widget.CardView>
@@ -383,13 +490,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -403,6 +510,17 @@
 
           </LinearLayout>
 
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/heel_raises">
+
+          </ImageView>
+
         </LinearLayout>
 
       </androidx.cardview.widget.CardView>
@@ -415,13 +533,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -435,6 +553,17 @@
 
           </LinearLayout>
 
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/clam_shell">
+
+          </ImageView>
+
         </LinearLayout>
 
       </androidx.cardview.widget.CardView>
@@ -447,13 +576,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -467,6 +596,17 @@
 
           </LinearLayout>
 
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/straight_leg_raises">
+
+          </ImageView>
+
         </LinearLayout>
 
       </androidx.cardview.widget.CardView>
@@ -479,13 +619,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -498,6 +638,17 @@
                 android:text="@string/terminal_knee_desc" />
 
           </LinearLayout>
+
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/terminal_knee">
+
+          </ImageView>
 
         </LinearLayout>
 
@@ -523,13 +674,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -543,6 +694,17 @@
 
           </LinearLayout>
 
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/ankle_pf_tb">
+
+          </ImageView>
+
         </LinearLayout>
 
       </androidx.cardview.widget.CardView>
@@ -555,13 +717,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -575,6 +737,17 @@
 
           </LinearLayout>
 
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/heel_raises">
+
+          </ImageView>
+
         </LinearLayout>
 
       </androidx.cardview.widget.CardView>
@@ -587,13 +760,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -607,6 +780,17 @@
 
           </LinearLayout>
 
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/single_leg">
+
+          </ImageView>
+
         </LinearLayout>
 
       </androidx.cardview.widget.CardView>
@@ -619,13 +803,13 @@
             style="@style/layout_linear_horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="1">
+            android:weightSum="2">
 
           <LinearLayout
               style="@style/layout_linear_vertical"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-              android:layout_weight="1"
+              android:layout_weight="1.3"
               android:padding="10dp">
 
             <TextView
@@ -638,6 +822,17 @@
                 android:text="@string/gentle_hopping_desc" />
 
           </LinearLayout>
+
+          <ImageView
+              android:layout_width="0dp"
+              android:layout_height="100dp"
+              android:layout_gravity="center_vertical"
+              android:scaleType="centerCrop"
+              android:layout_weight="0.7"
+              android:layout_margin="10dp"
+              android:src="@drawable/gentle_hopping">
+
+          </ImageView>
 
         </LinearLayout>
 

@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
+import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
 
 public class PTasksActivity extends AppCompatActivity {
@@ -58,6 +59,7 @@ public class PTasksActivity extends AppCompatActivity {
             therapist_code = extras.getString("therapist");
         }
 
+
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         StorageReference imagesRef = storageRef.child("users").child(ActivityNavigation.user_code).child("therapists").child(therapist_code).child("activities").child(activity_name).child("activity_image/image.jpg");
@@ -69,7 +71,7 @@ public class PTasksActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 // handle any errors that occur while trying to retrieve the image
-                Log.wtf("wtf", "Error retrieving image: " + e.getMessage());
+               Toast.makeText(getApplicationContext(), "Error retrieving image, no internet connection", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -79,9 +81,16 @@ public class PTasksActivity extends AppCompatActivity {
 
         back.setOnClickListener(v -> {
             finish();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         });
 
         finish.setOnClickListener(v ->{
+
+            if(getApplicationContext() != null & !LoginActivity.isNetworkConnected(getApplicationContext())){
+                Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Are you sure?")
                     .setPositiveButton("Yes", (dialog, which) -> {
@@ -90,6 +99,7 @@ public class PTasksActivity extends AppCompatActivity {
                         Toast.makeText(this, "Task Completed", Toast.LENGTH_SHORT).show();
                         setResult(RESULT_OK);
                         finish();
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     })
                     .setNegativeButton("No", (dialog, which) -> dialog.dismiss());
             AlertDialog alertDialog = builder.create();
@@ -108,6 +118,7 @@ public class PTasksActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     private void findView(){

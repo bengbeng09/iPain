@@ -54,6 +54,12 @@ public class DialogForgotPass extends AppCompatDialogFragment {
             String email = et_email.getText().toString();
 
             if (LoginActivity.isNotEmpty(new String[]{email})) {
+
+                if(getContext() != null & !LoginActivity.isNetworkConnected(getContext())){
+                    Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -145,6 +151,11 @@ public class DialogForgotPass extends AppCompatDialogFragment {
 
                     if(new_password.length() < 7){
                         Toast.makeText(getContext(), "New password is too short", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if(getContext() != null & !LoginActivity.isNetworkConnected(getContext())){
+                        Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
                         return;
                     }
 

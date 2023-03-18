@@ -1,13 +1,18 @@
 package com.sklerbidi.therapistmobileapp.LoginRegister;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +30,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
 import com.sklerbidi.therapistmobileapp.CustomClass.DBHelper;
-import com.sklerbidi.therapistmobileapp.Dialog.DialogChangePass;
 import com.sklerbidi.therapistmobileapp.Dialog.DialogForgotPass;
 import com.sklerbidi.therapistmobileapp.Guest.GuestActivity;
 import com.sklerbidi.therapistmobileapp.R;
@@ -38,6 +42,7 @@ public class LoginFragment extends Fragment {
     EditText et_username, et_password;
     LinearLayout container_login;
     CheckBox cb_remember;
+    View progressBarLayout;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://student-theses-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +58,13 @@ public class LoginFragment extends Fragment {
             final String password = et_password.getText().toString();
 
             if(LoginActivity.isNotEmpty(new String[]{username, password})){
+
+
+                if(getContext() != null & !LoginActivity.isNetworkConnected(getContext())){
+                    Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -78,7 +90,6 @@ public class LoginFragment extends Fragment {
                         if(usernameExists){
 
                             if(user.getPassword() != null && user.getPassword().equals(password)){
-                                toast("Login successfully");
 
                                 String[][] data = {
                                         {"username", username},
@@ -103,17 +114,29 @@ public class LoginFragment extends Fragment {
                                     db.close();
                                 }
 
-                                Intent intent = new Intent(getActivity(), ActivityNavigation.class);
+                                showProgressBar();
+                                new Handler().postDelayed(() -> {
+                                    // Start the ActivityLoading activity
+                                    Intent intent = new Intent(getActivity(), ActivityNavigation.class);
 
-                                for (String[] pair : data) {
-                                    intent.putExtra(pair[0], pair[1]);
-                                }
+                                    for (String[] pair : data) {
+                                        intent.putExtra(pair[0], pair[1]);
+                                    }
 
-                                startActivity(intent);
+                                    toast("Login successfully");
+                                    startActivity(intent);
+                                    requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
-                                if (getActivity() != null) {
-                                    getActivity().finish();
-                                }
+                                    if (getActivity() != null) {
+                                        getActivity().finish();
+                                    }
+                                    // Hide the progress bar
+                                    new Handler().postDelayed(() -> {
+                                        hideProgressBar();
+                                    }, 500);
+
+                                }, 2000);
+
 
                             }else{
                                 toast("Invalid Password");
@@ -126,7 +149,7 @@ public class LoginFragment extends Fragment {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
+                        toast("No internet connection");
                     }
                 });
             }else{
@@ -136,15 +159,37 @@ public class LoginFragment extends Fragment {
         });
 
         btn_guest_login.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), GuestActivity.class);
+            showProgressBar();
 
-            startActivity(intent);
+            if(cb_remember.isChecked()){
+                ContentValues values = new ContentValues();
+                values.put("id", 1);
+                values.put("username", "guest");
+                values.put("password", "guest");
 
-            toast("Guest Login");
+                DBHelper dbHelper = new DBHelper(getContext());
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-            if (getActivity() != null) {
-                getActivity().finish();
+                db.replace("user_table", null, values);
+
+                db.close();
             }
+
+            new Handler().postDelayed(() -> {
+                // Start the ActivityLoading activity
+                Intent intent = new Intent(getActivity(), GuestActivity.class);
+                toast("Login as Guest");
+                startActivity(intent);
+                requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+
+                if (getActivity() != null) {
+                    getActivity().finish();
+                }
+                // Hide the progress bar
+                new Handler().postDelayed(this::hideProgressBar, 500);
+
+            }, 2000);
 
         });
 
@@ -155,10 +200,11 @@ public class LoginFragment extends Fragment {
 
             RegisterFragment registerFragment = new RegisterFragment();
             if(getActivity()!= null){
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(((ViewGroup)getView().getParent()).getId(), registerFragment, "register")
-                        .addToBackStack(null)
-                        .commit();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right); // add the animations
+                transaction.replace(((ViewGroup) getView().getParent()).getId(), registerFragment, "register");
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
 
         });
@@ -170,6 +216,29 @@ public class LoginFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void showProgressBar() {
+        // Inflate the progress bar layout
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        View progressBarView = inflater.inflate(R.layout.layout_progress_bar, null);
+
+        // Add the progress bar layout to the activity's content view
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+        getActivity().addContentView(progressBarView, params);
+
+        // Save a reference to the progress bar layout so that it can be removed later
+        progressBarLayout = progressBarView;
+    }
+
+    public void hideProgressBar() {
+        // Remove the progress bar layout from the activity's content view
+        if (progressBarLayout != null) {
+            ((ViewGroup) progressBarLayout.getParent()).removeView(progressBarLayout);
+            progressBarLayout = null;
+        }
     }
 
     public static class User {

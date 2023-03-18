@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
+import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
 
 public class PTherapistSessionActivity extends AppCompatActivity {
@@ -48,9 +50,16 @@ public class PTherapistSessionActivity extends AppCompatActivity {
             tv_clinic.setText(clinic.toUpperCase());
         }
 
+        if(getApplicationContext() != null & !LoginActivity.isNetworkConnected(getApplicationContext())){
+            Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT).show();
+        }
+
         set_card();
 
-        back.setOnClickListener(v -> finish());
+        back.setOnClickListener(v -> {
+            finish();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        });
     }
 
     private void set_card(){
@@ -114,6 +123,7 @@ public class PTherapistSessionActivity extends AppCompatActivity {
             intent.putExtra("status", status);
             intent.putExtra("therapist", therapist_code);
             startActivityForResult(intent, REQUEST_CODE_SECOND_ACTIVITY);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
 
         if(status.equalsIgnoreCase("incomplete")){
@@ -130,7 +140,9 @@ public class PTherapistSessionActivity extends AppCompatActivity {
             button.setBackgroundTintList(colorStateList);
             container_completed.addView(view);
         }
-
+        view.setTranslationY(-100f);
+        view.setAlpha(0f);
+        view.animate().translationYBy(100f).alpha(1f).setDuration(500);
     }
 
     @Override
@@ -145,6 +157,7 @@ public class PTherapistSessionActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     private void findView(){

@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
 import com.sklerbidi.therapistmobileapp.Dialog.TDialogAddPatient;
+import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
 
 
@@ -46,13 +47,15 @@ public class TMenuPatients extends Fragment {
 
         findView(view);
 
+        if(getContext() != null & !LoginActivity.isNetworkConnected(getContext())){
+            Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
+        }
+
         set_card();
 
         getParentFragmentManager().setFragmentResultListener("request_patient", this, (requestKey, bundle) -> {
 
             String patient_user_code = bundle.getString("user_code");
-
-            Log.wtf("wtf", patient_user_code);
 
             databaseReference.child("users").child(ActivityNavigation.user_code).child("patients").child(patient_user_code).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -75,6 +78,10 @@ public class TMenuPatients extends Fragment {
         });
 
         add_patient.setOnClickListener(v -> {
+            if(getContext() != null & !LoginActivity.isNetworkConnected(getContext())){
+                Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
+                return;
+            }
             TDialogAddPatient TDialogAddPatient = new TDialogAddPatient();
             TDialogAddPatient.setCancelable(false);
             TDialogAddPatient.show(getActivity().getSupportFragmentManager(), "add patient");
@@ -155,9 +162,13 @@ public class TMenuPatients extends Fragment {
             intent.putExtra("last_name", lastname);
             intent.putExtra("user_code", user_code);
             startActivity(intent);
+            requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
 
         container_patient.addView(view);
+        view.setTranslationY(-100f);
+        view.setAlpha(0f);
+        view.animate().translationYBy(100f).alpha(1f).setDuration(500);
     }
 
     private void filter_cards(String query) {

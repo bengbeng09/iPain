@@ -1,8 +1,11 @@
 package com.sklerbidi.therapistmobileapp.Patient;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +21,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -82,20 +87,38 @@ public class PMenuTherapySession extends Fragment {
         });
 
         tv_return.setOnClickListener( v -> {
-            therapists.setVisibility(View.VISIBLE);
-            tv_return.setVisibility(View.GONE);
+
+            Animation slideOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_left);
+            add_therapist.startAnimation(slideOutAnim);
             add_therapist.setVisibility(View.GONE);
+
+            Animation slideInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_right);
+            therapists.startAnimation(slideInAnim);
+            therapists.setVisibility(View.VISIBLE);
+
         });
 
         btn_add_therapist.setOnClickListener(v -> {
-            tv_return.setVisibility(View.VISIBLE);
-            add_therapist.setVisibility(View.VISIBLE);
+
+            Animation slideOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_right);
+            therapists.startAnimation(slideOutAnim);
             therapists.setVisibility(View.GONE);
+
+            Animation slideInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left);
+            add_therapist.startAnimation(slideInAnim);
+            add_therapist.setVisibility(View.VISIBLE);
+
         });
 
         btn_submit.setOnClickListener(v -> {
             String therapist_code = et_therapist_code.getText().toString().toUpperCase();
             if(LoginActivity.isNotEmpty(new String[]{et_therapist_code.getText().toString()})){
+
+                if(getContext() != null & !LoginActivity.isNetworkConnected(getContext())){
+                    Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 databaseReference.child("users").child(therapist_code).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -111,10 +134,16 @@ public class PMenuTherapySession extends Fragment {
                                                 databaseReference.child("users").child(ActivityNavigation.user_code).child("therapists").child(therapist_code).child("status").setValue("active");
                                                 databaseReference.child("users").child(therapist_code).child("patients").child(ActivityNavigation.user_code).child("status").setValue("active");
 
+                                                Animation slideOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_left);
+                                                add_therapist.startAnimation(slideOutAnim);
+                                                add_therapist.setVisibility(View.GONE);
+
+                                                Animation slideInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_right);
+                                                therapists.startAnimation(slideInAnim);
+                                                therapists.setVisibility(View.VISIBLE);
+
                                                 set_card();
 
-                                                therapists.setVisibility(View.VISIBLE);
-                                                add_therapist.setVisibility(View.GONE);
                                                 et_therapist_code.setText(null);
                                                 Toast.makeText(getActivity(), "Therapist added successfully", Toast.LENGTH_SHORT).show();
 
@@ -209,6 +238,7 @@ public class PMenuTherapySession extends Fragment {
             intent.putExtra("code", user_code);
             intent.putExtra("clinic", clinic);
             startActivity(intent);
+            requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
 
         remove.setOnClickListener(v -> {
@@ -239,7 +269,6 @@ public class PMenuTherapySession extends Fragment {
                     passwordInput.setTextSize(12);
                     passwordInput.setLayoutParams(params);
                     passwordInput.setBackground(getResources().getDrawable(R.drawable.button_round_outlined_red));
-
 
                     LinearLayout linearLayout = new LinearLayout(getActivity());
                     linearLayout.setLayoutParams(params);
@@ -288,6 +317,9 @@ public class PMenuTherapySession extends Fragment {
         });
 
         container_therapist.addView(view);
+        view.setTranslationY(-100f);
+        view.setAlpha(0f);
+        view.animate().translationYBy(100f).alpha(1f).setDuration(500);
     }
 
     public String cap(String originalString) {

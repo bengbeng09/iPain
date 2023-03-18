@@ -34,7 +34,7 @@
 
     <string name="low_row">Low Row</string>
     <string name="low_row_desc">Targets the upper back muscles and improves posture</string>
-    <string name="low_row_how"> Attach a resistance band to a sturdy object at about waist height. Stand facing the anchor point with your arms extended in front of you, holding onto the resistance band handles. Pull your elbows back towards your sides, squeezing your shoulder blades together. Return to starting position.</string>
+    <string name="low_row_how">To perform the seated low row exercise, sit on the ground with legs extended and back straight. Extend your arms straight out in front of you with palms facing down. Slowly pull your hands back towards your chest, squeezing shoulder blades together. Hold briefly, then release and repeat for several reps, maintaining good posture and engaging back and shoulder muscles. Add weights to increase intensity.</string>
     <string name="low_row_session">Repeat for 2–3 sets of 10–15 reps</string>
 
     <string name="upper_cut">Upper Cut</string>
@@ -94,22 +94,22 @@
 
     <string name="terminal_knee">Terminal Knee Extension</string>
     <string name="terminal_knee_desc">Strengthens the quadriceps muscles and improves knee stability</string>
-    <string name="terminal_knee_how">Sit on a chair with a resistance band looped around your ankle and tied to the chair leg. Straighten your knee against the resistance of the band, then slowly lower back down.</string>
+    <string name="terminal_knee_how">Lie on your back, place a rolled-up towel or ball between your knees, bend one knee, lift the other leg, straighten it while engaging thigh and hip muscles, hold for a few seconds, and then slowly lower it back down. Repeat on the other side. Avoid arching your lower back, and gradually increase repetitions for greater strength and endurance.</string>
     <string name="terminal_knee_session">Repeat for 2–3 sets of 10–15 reps on each leg.</string>
 
     <string name="ankle">Ankle PF TB</string>
     <string name="ankle_desc">Strengthens the ankle plantar flexor muscles and improves ankle stability</string>
-    <string name="ankle_how">Sit on a chair with a resistance band looped around the ball of your foot and tied to the chair leg. Flex your foot upward against the resistance of the band, then slowly lower back down.</string>
+    <string name="ankle_how">Start by sitting with your legs straight out in front of you and loop a towel or band around the ball of one foot. Hold the ends of the towel or band in your hands. Press the ball of your foot down and point your toes away from you. Hold this position for a few seconds, then release. Repeat this movement for several repetitions and switch to the other foot. Keep your ankle and foot in a neutral position, avoiding rolling your foot inward or outward. </string>
     <string name="ankle_session">Repeat for 2–3 sets of 10–15 reps on each foot.</string>
 
     <string name="single_leg">Single Leg Balance</string>
     <string name="single_leg_desc">Strengthens the calf muscles and improves ankle stability</string>
-    <string name="single_leg_how">Stand on one foot and hold for 30 seconds to 1 minute, then switch to the other foot.</string>
+    <string name="single_leg_how">Stand on one leg with your knee slightly bent, hands on hips or out to sides. Lean forward and raise the other leg behind you, keeping hips level and back straight. Hold for a few seconds, then lower and repeat on the same leg. Switch to the other leg and repeat. For variation, try leaning backward and raising your leg in front of you. Keep your abdominal muscles engaged to maintain balance. Gradually increase repetitions and difficulty as you progress.</string>
     <string name="single_leg_session">Repeat for 2–3 sets on each foot.</string>
 
     <string name="gentle_hopping">Gentle Hopping</string>
     <string name="gentle_hopping_desc">Improves balance, ankle stability, and proprioception</string>
-    <string name="gentle_hopping_how">Stand on one foot and gently hop up and down, focusing on landing softly and maintaining your balance.</string>
+    <string name="gentle_hopping_how">Stand with feet hip–width apart, knees slightly bent, and begin gently hopping on the balls of your feet. Use toes and ankles to push off the ground, keep upper body relaxed and arms loose at sides. Gradually increase height and speed of hops, continuing for 1–2 minutes or until slightly fatigued. Land softly, absorbing impact with knees and ankles. </string>
     <string name="gentle_hopping_session">Repeat for 2–3 sets of 10–15 reps on each foot.</string>
 
 

@@ -2,6 +2,7 @@ package com.sklerbidi.therapistmobileapp.Menu;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
+import com.sklerbidi.therapistmobileapp.CustomClass.DBHelper;
 import com.sklerbidi.therapistmobileapp.Dialog.DialogChangePass;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
@@ -50,11 +52,18 @@ public class MenuSettings extends Fragment {
         logout.setOnClickListener(v -> {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage("Are you sure?")
+            builder.setMessage("Logout?")
                     .setPositiveButton("Yes", (dialog, which) -> {
                         Intent intent = new Intent(getActivity(), LoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                        DBHelper dbHelper = new DBHelper(getActivity());
+                        SQLiteDatabase db = dbHelper.getWritableDatabase();
+                        db.delete("user_table", null, null);
+                        db.close();
+                        
                         startActivity(intent);
+                        requireActivity().overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     })
                     .setNegativeButton("No", (dialog, which) -> dialog.dismiss());
             AlertDialog alertDialog = builder.create();

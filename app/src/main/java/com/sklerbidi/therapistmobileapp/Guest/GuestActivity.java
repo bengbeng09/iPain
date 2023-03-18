@@ -4,15 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.sklerbidi.therapistmobileapp.CustomClass.DBHelper;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
 
 public class GuestActivity extends AppCompatActivity {
 
     Button btn_back;
+    public static boolean hasSeenAdvice = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,14 @@ public class GuestActivity extends AppCompatActivity {
                     .setPositiveButton("Yes", (dialog, which) -> {
                         Intent intent = new Intent(this, LoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                        DBHelper dbHelper = new DBHelper(getApplicationContext());
+                        SQLiteDatabase db = dbHelper.getWritableDatabase();
+                        db.delete("user_table", null, null);
+                        db.close();
+
                         startActivity(intent);
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     })
                     .setNegativeButton("No", (dialog, which) -> dialog.dismiss());
             AlertDialog alertDialog = builder.create();
@@ -44,11 +54,9 @@ public class GuestActivity extends AppCompatActivity {
 
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Logout?")
+        builder.setMessage("Exit?")
                 .setPositiveButton("Yes", (dialog, which) -> {
-                    Intent intent = new Intent(this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                    finishAffinity();
                 })
                 .setNegativeButton("No", (dialog, which) -> dialog.dismiss());
         AlertDialog alertDialog = builder.create();

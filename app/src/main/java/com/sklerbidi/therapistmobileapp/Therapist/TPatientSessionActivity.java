@@ -28,6 +28,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
 import com.sklerbidi.therapistmobileapp.Dialog.PDialogAddActivity;
+import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
 
 import java.io.ByteArrayOutputStream;
@@ -51,7 +52,6 @@ public class TPatientSessionActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
 
-
         if (extras != null) {
             name = extras.getString("first_name") + " " + extras.getString("last_name") ;
             user_code = extras.getString("user_code");
@@ -59,6 +59,10 @@ public class TPatientSessionActivity extends AppCompatActivity {
 
         tv_session_name.setText(name.toUpperCase());
         tv_session_id.setText(user_code);
+
+        if(getApplicationContext() != null & !LoginActivity.isNetworkConnected(getApplicationContext())){
+            Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT).show();
+        }
 
         set_card();
 
@@ -103,7 +107,6 @@ public class TPatientSessionActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext() , "Activity uploaded successfully", Toast.LENGTH_SHORT).show())
                         .addOnFailureListener(e -> {
                             Toast.makeText(getApplicationContext(), "Image upload failed for some reason", Toast.LENGTH_SHORT).show();
-                            Log.wtf("wtf", e);
                         })
                         .addOnProgressListener(snapshot -> {
 
@@ -116,7 +119,10 @@ public class TPatientSessionActivity extends AppCompatActivity {
 
         });
 
-        btn_back.setOnClickListener(v -> finish());
+        btn_back.setOnClickListener(v -> {
+            finish();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        });
 
     }
 
@@ -184,5 +190,6 @@ public class TPatientSessionActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

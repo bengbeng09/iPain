@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
 
 public class PTherapistLoadingActivity extends AppCompatActivity {
@@ -29,8 +31,6 @@ public class PTherapistLoadingActivity extends AppCompatActivity {
             tv_name.setText(name);
         }
 
-
-
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(PTherapistLoadingActivity.this, PTherapistSessionActivity.class);
             intent.putExtra("name", name);
@@ -38,6 +38,7 @@ public class PTherapistLoadingActivity extends AppCompatActivity {
             intent.putExtra("clinic", clinic);
             startActivity(intent);
             finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }, 2000);
     }
 

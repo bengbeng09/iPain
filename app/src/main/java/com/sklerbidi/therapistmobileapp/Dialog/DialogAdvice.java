@@ -31,7 +31,6 @@ public class DialogAdvice extends AppCompatDialogFragment {
         findView(view);
 
         btn_continue.setOnClickListener(v -> {
-            getActivity().finish();
             getParentFragmentManager().beginTransaction().remove(DialogAdvice.this).commit();
         });
 

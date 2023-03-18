@@ -7,8 +7,12 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sklerbidi.therapistmobileapp.CustomClass.DBHelper;
+import com.sklerbidi.therapistmobileapp.Guest.GuestActivity;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginFragment;
 import com.sklerbidi.therapistmobileapp.Patient.PTherapistLoadingActivity;
@@ -65,72 +70,80 @@ public class ActivityLoading extends AppCompatActivity {
             final String password = saved_password;
 
             if(LoginActivity.isNotEmpty(new String[]{username, password})){
-                databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(username.equals("guest")){
+                    startDelayedActivity(GuestActivity.class, 2000);
+                }else{
+                    databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        boolean usernameExists = false;
-                        LoginFragment.User user = new LoginFragment.User();
+                            boolean usernameExists = false;
+                            LoginFragment.User user = new LoginFragment.User();
 
-                        for (DataSnapshot userSnapshot : snapshot.getChildren()) {
-                            String username_check = userSnapshot.child("username").getValue(String.class);
+                            for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                                String username_check = userSnapshot.child("username").getValue(String.class);
 
-                            if (username_check != null && username_check.equals(username)) {
-                                user.setUserCode(userSnapshot.getKey());
-                                user.setPassword(userSnapshot.child("password").getValue(String.class));
-                                user.setUserType(userSnapshot.child("user_type").getValue(String.class));
-                                user.setFirstName(userSnapshot.child("first_name").getValue(String.class));
-                                user.setLastName(userSnapshot.child("last_name").getValue(String.class));
-                                user.setEmail(userSnapshot.child("email").getValue(String.class));
-                                usernameExists = true;
-                                break;
+                                if (username_check != null && username_check.equals(username)) {
+                                    user.setUserCode(userSnapshot.getKey());
+                                    user.setPassword(userSnapshot.child("password").getValue(String.class));
+                                    user.setUserType(userSnapshot.child("user_type").getValue(String.class));
+                                    user.setFirstName(userSnapshot.child("first_name").getValue(String.class));
+                                    user.setLastName(userSnapshot.child("last_name").getValue(String.class));
+                                    user.setEmail(userSnapshot.child("email").getValue(String.class));
+                                    usernameExists = true;
+                                    break;
+                                }
+                            }
+
+                            if(usernameExists){
+
+                                if(user.getPassword() != null && user.getPassword().equals(password)){
+
+                                    String[][] data = {
+                                            {"username", username},
+                                            {"user_type", user.getUserType()},
+                                            {"first_name", user.getFirstName()},
+                                            {"last_name", user.getLastName()},
+                                            {"user_code", user.getUserCode()},
+                                            {"email", user.getEmail()}
+                                    };
+
+                                    new Handler().postDelayed(() -> {
+                                        Intent intent = new Intent(ActivityLoading.this, ActivityNavigation.class);
+
+                                        for (String[] pair : data) {
+                                            intent.putExtra(pair[0], pair[1]);
+                                        }
+
+                                        startActivity(intent);
+                                        finish();
+                                    }, 2000);
+
+                                }
                             }
                         }
 
-                        if(usernameExists){
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                            if(user.getPassword() != null && user.getPassword().equals(password)){
-
-                                String[][] data = {
-                                        {"username", username},
-                                        {"user_type", user.getUserType()},
-                                        {"first_name", user.getFirstName()},
-                                        {"last_name", user.getLastName()},
-                                        {"user_code", user.getUserCode()},
-                                        {"email", user.getEmail()}
-                                };
-
-
-
-                                new Handler().postDelayed(() -> {
-                                    Intent intent = new Intent(ActivityLoading.this, ActivityNavigation.class);
-
-                                    for (String[] pair : data) {
-                                        intent.putExtra(pair[0], pair[1]);
-                                    }
-
-                                    startActivity(intent);
-                                    finish();
-                                }, 2000);
-
-                            }
                         }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
+                    });
+                }
             }else{
                 Toast.makeText(this,"Saved account error", Toast.LENGTH_SHORT).show();
+                startDelayedActivity(LoginActivity.class, 2000);
             }
         }else{
-            new Handler().postDelayed(() -> {
-                Intent intent = new Intent(ActivityLoading.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }, 2000);
+            startDelayedActivity(LoginActivity.class, 2000);
         }
+    }
+
+    public void startDelayedActivity(final Class<?> targetActivity, long delayMillis) {
+        new Handler().postDelayed(() -> {
+            Intent intent = new Intent(ActivityLoading.this, targetActivity);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        }, delayMillis);
     }
 }

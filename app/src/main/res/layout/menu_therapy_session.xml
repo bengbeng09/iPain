@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:id="@+id/view_add_therapist"
-        android:visibility="visible"
+        android:visibility="gone"
         style="@style/linear_layout_vertical"
         android:layout_marginBottom="150dp"
         android:layout_marginStart="30dp"
@@ -51,9 +51,9 @@
 
         <TextView
             android:id="@+id/tv_return"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_marginTop="10dp"
-            android:textColor="#A4A4a4"
+            android:textColor="#D0D0D0"
             style="@style/text_size_1"
             android:text="RETURN"/>
 

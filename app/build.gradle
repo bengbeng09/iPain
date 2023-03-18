@@ -47,4 +47,5 @@ dependencies {
     implementation files('libs/additionnal.jar')
     implementation files('libs/mail.jar')
 
+    implementation 'androidx.transition:transition:1.4.1'
 }

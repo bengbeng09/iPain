@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -75,32 +76,31 @@ public class ActivityNavigation extends AppCompatActivity implements NavigationV
 
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+        Fragment selectedFragment;
 
         switch (item.getItemId()) {
-
             case R.id.navigation_dashboard:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MenuDashboard()).commit();
-                getFragmentManager().beginTransaction();
-
+                selectedFragment = new MenuDashboard();
                 break;
             case R.id.navigation_therapy_session:
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PMenuTherapySession()).commit();
-                getFragmentManager().beginTransaction();
+                selectedFragment = new PMenuTherapySession();
                 break;
             case R.id.navigation_patients:
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TMenuPatients()).commit();
-                getFragmentManager().beginTransaction();
+                selectedFragment = new TMenuPatients();
                 break;
             case R.id.navigation_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MenuSettings()).commit();
-                getFragmentManager().beginTransaction();
+                selectedFragment = new MenuSettings();
                 break;
             default:
                 return false;
-
         }
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, selectedFragment)
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
+                .commit();
+
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

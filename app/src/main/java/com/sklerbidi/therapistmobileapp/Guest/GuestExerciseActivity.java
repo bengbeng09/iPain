@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.sklerbidi.therapistmobileapp.Dialog.DialogAdvice;
 import com.sklerbidi.therapistmobileapp.R;
 
 public class GuestExerciseActivity extends AppCompatActivity {
@@ -27,6 +28,13 @@ public class GuestExerciseActivity extends AppCompatActivity {
         findViewById();
 
         Bundle extras = getIntent().getExtras();
+
+        if(!GuestActivity.hasSeenAdvice){
+            GuestActivity.hasSeenAdvice = true;
+            DialogAdvice dialogAdvice = new DialogAdvice();
+            dialogAdvice.setCancelable(false);
+            dialogAdvice.show(getSupportFragmentManager(), "advice");
+        }
 
         if (extras != null) {
             type = extras.getString("type");
@@ -60,8 +68,13 @@ public class GuestExerciseActivity extends AppCompatActivity {
                     getResources().getString(sessionStrings[i]));
         }
 
-        btn_back.setOnClickListener(v -> finish());
+        btn_back.setOnClickListener(v -> {
+            finish();
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        });
     }
+
+
 
     private void setButton(CardView card, String exercise, String steps, String repetition){
         card.setOnClickListener(v -> {
@@ -70,18 +83,14 @@ public class GuestExerciseActivity extends AppCompatActivity {
             intent.putExtra("how", steps);
             intent.putExtra("repetition", repetition);
             startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 69) {
-            if (resultCode == Activity.RESULT_OK) {
-                // Finish both activities and return to the MainActivity
-                finish();
-            }
-        }
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     private void findViewById() {

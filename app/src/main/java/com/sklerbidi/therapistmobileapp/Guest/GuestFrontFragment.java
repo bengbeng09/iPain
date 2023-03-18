@@ -36,6 +36,7 @@ public class GuestFrontFragment extends Fragment {
             GuestBackFragment guestBackFragment = new GuestBackFragment();
             if(getActivity()!= null){
                 getActivity().getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right) // add the animations
                         .replace(((ViewGroup)getView().getParent()).getId(), guestBackFragment, "back")
                         .addToBackStack(null)
                         .commit();
@@ -49,6 +50,7 @@ public class GuestFrontFragment extends Fragment {
         Intent intent = new Intent(getActivity(), GuestExerciseActivity.class);
         intent.putExtra("type", text);
         startActivity(intent);
+        requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     private void findView(View view) {
