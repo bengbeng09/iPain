@@ -40,7 +40,7 @@
 
                     <TextView
                         android:id="@+id/tv_pending_task"
-                        android:text="0"
+                        android:text=""
                         android:layout_marginTop="0dp"
                         style="@style/text_size_4_white"/>
 
@@ -72,7 +72,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="0dp"
-                        android:text="0"
+                        android:text=""
                         style="@style/text_size_4_white"/>
 
                 </LinearLayout>

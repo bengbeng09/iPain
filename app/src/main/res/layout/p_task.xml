@@ -133,6 +133,7 @@
                     android:layout_margin="20dp"
                     android:id="@+id/tv_link"
                     style="@style/text_size_1"
+                    android:textColor="@color/white"
                     android:text="wwww.samplelink.com"/>
 
             </androidx.cardview.widget.CardView>

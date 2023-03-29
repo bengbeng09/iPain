@@ -63,6 +63,10 @@ public class PMenuTherapySession extends Fragment {
 
         findView(view);
         tv_welcome.setText("Welcome, " + cap(ActivityNavigation.firstname));
+
+        if(getContext() != null & !LoginActivity.isNetworkConnected(getContext())){
+            Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
+        }
         set_card();
 
         databaseReference.child("users").child(ActivityNavigation.user_code).child("therapists").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -74,6 +78,7 @@ public class PMenuTherapySession extends Fragment {
                 }else{
                     therapists.setVisibility(View.GONE);
                     add_therapist.setVisibility(View.VISIBLE);
+                    tv_return.setVisibility(View.GONE);
                 }
             }
             @Override
@@ -87,6 +92,7 @@ public class PMenuTherapySession extends Fragment {
             Animation slideOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_out_left);
             add_therapist.startAnimation(slideOutAnim);
             add_therapist.setVisibility(View.GONE);
+            tv_return.setVisibility(View.GONE);
 
             Animation slideInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_right);
             therapists.startAnimation(slideInAnim);
@@ -103,6 +109,7 @@ public class PMenuTherapySession extends Fragment {
             Animation slideInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.slide_in_left);
             add_therapist.startAnimation(slideInAnim);
             add_therapist.setVisibility(View.VISIBLE);
+            tv_return.setVisibility(View.VISIBLE);
 
         });
 

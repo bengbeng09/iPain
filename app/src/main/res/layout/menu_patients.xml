@@ -7,7 +7,6 @@
     tools:context=".Therapist.TMenuPatients">
 
 
-
     <TextView
         android:id="@+id/title_text"
         style="@style/title_text"
