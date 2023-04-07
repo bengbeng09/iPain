@@ -51,19 +51,23 @@ public class PTherapistLoadingActivity extends AppCompatActivity {
 
             imagesRef.listAll().addOnSuccessListener(listResult -> {
                 List<StorageReference> items = listResult.getItems();
-                items.sort(Comparator.comparing(StorageReference::getName));
+                if (items.size() > 0) {
+                    items.sort(Comparator.comparing(StorageReference::getName));
 
-                StorageReference latestProfileRef = items.get(items.size() - 1);
+                    StorageReference latestProfileRef = items.get(items.size() - 1);
 
-                latestProfileRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                    if(getApplicationContext()!=null){
-                        Glide.with(getApplicationContext())
-                                .load(uri)
-                                .transform(new CircleCrop())
-                                .transition(DrawableTransitionOptions.withCrossFade())
-                                .into(therapist_profile);
-                    }
-                });
+                    latestProfileRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        if(getApplicationContext()!=null){
+                            Glide.with(getApplicationContext())
+                                    .load(uri)
+                                    .transform(new CircleCrop())
+                                    .transition(DrawableTransitionOptions.withCrossFade())
+                                    .into(therapist_profile);
+                        }
+                    });
+                }else{
+                    therapist_profile.setImageResource(R.drawable.ic_baseline_account_circle_24);
+                }
             }).addOnFailureListener(e -> {
                 Toast.makeText(getApplicationContext(), "Error retrieving profile, connection problem", Toast.LENGTH_SHORT).show();
             });

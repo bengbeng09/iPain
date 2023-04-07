@@ -75,19 +75,23 @@ public class MenuSettings extends Fragment {
 
             imagesRef.listAll().addOnSuccessListener(listResult -> {
                 List<StorageReference> items = listResult.getItems();
-                items.sort(Comparator.comparing(StorageReference::getName));
+                if (items.size() > 0) {
+                    items.sort(Comparator.comparing(StorageReference::getName));
 
-                StorageReference latestProfileRef = items.get(items.size() - 1);
+                    StorageReference latestProfileRef = items.get(items.size() - 1);
 
-                latestProfileRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                    if(getActivity()!=null){
-                        Glide.with(getActivity())
-                                .load(uri)
-                                .transform(new CircleCrop())
-                                .transition(DrawableTransitionOptions.withCrossFade())
-                                .into(change_profile);
-                    }
-                });
+                    latestProfileRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        if(getActivity()!=null){
+                            Glide.with(getActivity())
+                                    .load(uri)
+                                    .transform(new CircleCrop())
+                                    .transition(DrawableTransitionOptions.withCrossFade())
+                                    .into(change_profile);
+                        }
+                    });
+                }else{
+                    change_profile.setImageResource(R.drawable.ic_baseline_account_circle_24_black);
+                }
             }).addOnFailureListener(e -> {
                 Toast.makeText(getActivity(), "Error retrieving profile, connection problem", Toast.LENGTH_SHORT).show();
             });
