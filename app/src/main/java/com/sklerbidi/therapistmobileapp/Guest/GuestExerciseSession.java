@@ -14,6 +14,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.sklerbidi.therapistmobileapp.R;
 
 import java.util.HashMap;
@@ -67,7 +71,11 @@ public class GuestExerciseSession extends AppCompatActivity {
 // Look up the drawable resource ID using the exercise name as the key
         Integer drawableId = exerciseDrawableMap.get(exercise.toLowerCase());
         if (drawableId != null) {
-            img_exercise.setImageResource(drawableId);
+            Glide.with(getApplicationContext())
+                    .load(drawableId)
+                    .transform(new RoundedCorners(20))
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(img_exercise);
         }
 
         btn_done.setOnClickListener(v -> {

@@ -22,6 +22,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -70,12 +73,16 @@ public class PTasksActivity extends AppCompatActivity {
 
         imagesRef.getDownloadUrl().addOnSuccessListener(uri -> {
             // use the uri to load the image into an ImageView or to display it in some other way
-            Glide.with(getApplicationContext()).load(uri).into(image);
+            Glide.with(getApplicationContext())
+                    .load(uri)
+                    .transform(new RoundedCorners(20))
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(image);
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 // handle any errors that occur while trying to retrieve the image
-               Toast.makeText(getApplicationContext(), "Error retrieving image, no internet connection", Toast.LENGTH_SHORT).show();
+               Toast.makeText(getApplicationContext(), "Error retrieving image", Toast.LENGTH_SHORT).show();
             }
         });
 
