@@ -23,26 +23,49 @@
             android:background="?android:attr/selectableItemBackground"
             android:layout_height="30dp"/>
 
-
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
             android:layout_marginTop="20dp"
-            android:id="@+id/tv_therapist_clinic"
-            style="@style/title_text"
-            android:textAlignment="textStart"
-            android:layout_marginStart="5dp"
-            android:text="ST LUKE MEDICAL CLINIC"
-            android:textColor="@color/black" />
-        <TextView
-            android:id="@+id/tv_therapist_name"
-            style="@style/text_size_1"
-            android:textAlignment="textStart"
-            android:layout_marginStart="5dp"
-            android:layout_below="@+id/tv_session_name"
-            android:text="Dr. Viola M. De Guzman"
-            android:textColor="@color/black" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/img_therapist_profile"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_account_circle_24"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+
+            <LinearLayout
+                style="@style/linear_layout_vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/img_therapist_profile">
+
+                <TextView
+                    android:id="@+id/tv_therapist_clinic"
+                    style="@style/title_text"
+                    android:textAlignment="textStart"
+                    android:layout_marginStart="10dp"
+                    android:text="ST LUKE MEDICAL CLINIC"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tv_therapist_name"
+                    style="@style/text_size_1"
+                    android:textAlignment="textStart"
+                    android:layout_marginStart="10dp"
+                    android:text="Dr. Viola M. De Guzman"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
-
-
 
     <ScrollView
         android:layout_below="@id/layout_1"

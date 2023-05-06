@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 
 import android.provider.MediaStore;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,11 +35,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
 import com.sklerbidi.therapistmobileapp.CustomClass.DBHelper;
+import com.sklerbidi.therapistmobileapp.CustomClass.Util;
 import com.sklerbidi.therapistmobileapp.Dialog.DialogChangePass;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
@@ -55,6 +59,8 @@ public class MenuSettings extends Fragment {
     ImageView change_profile;
     Bitmap bitmap;
     private static final int PICK_IMAGE_REQUEST = 1001;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://student-theses-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -190,6 +196,8 @@ public class MenuSettings extends Fragment {
             }
         }
     }
+
+
 
     private void findView(View view){
         tv_user_id = view.findViewById(R.id.tv_id);

@@ -12,10 +12,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
+import com.sklerbidi.therapistmobileapp.CustomClass.Util;
 import com.sklerbidi.therapistmobileapp.Dialog.TDialogAddPatient;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
@@ -91,6 +94,7 @@ public class TMenuPatients extends Fragment {
             TDialogAddPatient TDialogAddPatient = new TDialogAddPatient();
             TDialogAddPatient.setCancelable(false);
             TDialogAddPatient.show(getActivity().getSupportFragmentManager(), "add patient");
+
         });
 
         et_search_patient.addTextChangedListener(new TextWatcher() {
@@ -192,6 +196,31 @@ public class TMenuPatients extends Fragment {
         }
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Util.checkAndUpdateManualStatus(databaseReference, ActivityNavigation.user_code, "manual_patients", isManualEnabled -> {
+            boolean showManual = !isManualEnabled;
+            if(showManual){
+                manual();
+            }
+        });
+    }
+
+    public void manual(){
+        if (getView() != null) {
+            getView().post(() -> {
+                if (getContext() != null && getActivity() != null) {
+                    String[] messages = new String[]{"Welcome to your patients tab! ",
+                            " This is where you can see all of your patients and even add a new one to the roster."};
+                    int[] gravities = new int[]{Gravity.CENTER, Gravity.BOTTOM};
+                    int count = 2;
+
+                    Util.createPopUpWindows(getContext(), (ViewGroup) getView(), messages, gravities, count);
+                }
+            });
+        }
+    }
 
     public void findView(View view){
         add_patient = view.findViewById(R.id.btn_add_patient);

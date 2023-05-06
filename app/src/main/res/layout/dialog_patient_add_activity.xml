@@ -9,26 +9,23 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
 
         <Button
-            android:layout_width="30dp"
-            android:paddingLeft="7dp"
             android:id="@+id/btn_back"
-            android:drawableEnd="@drawable/ic_baseline_arrow_back_ios_24"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="?android:attr/selectableItemBackground"
-            android:layout_height="30dp"/>
-
+            android:drawableEnd="@drawable/ic_baseline_arrow_back_ios_24"
+            android:paddingLeft="7dp" />
 
     </LinearLayout>
 
-    <ScrollView
-        style="@style/scroll_layout_main">
+    <ScrollView style="@style/scroll_layout_main">
 
-        <LinearLayout
-            style="@style/linear_layout_vertical">
+        <LinearLayout style="@style/linear_layout_vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,114 +35,162 @@
 
                 <TextView
                     style="@style/text_size_0"
-                    android:textAlignment="textStart"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
-                    android:text="Activity Name:"/>
+                    android:layout_marginTop="10dp"
+                    android:text="Activity Name:"
+                    android:textAlignment="textStart" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_activity_name"
                     style="@style/edit_text_outlined_gray"
-                    android:paddingLeft="10dp"
                     android:layout_gravity="center_horizontal"
+                    android:paddingLeft="10dp"
                     android:tooltipText="Username" />
 
 
                 <ImageView
-                    android:layout_marginTop="30dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="30dp"
                     android:id="@+id/image_view"
                     android:layout_width="match_parent"
-                    android:background="#D9D9D9"
-                    android:layout_height="150dp">
-                </ImageView>
+                    android:layout_height="150dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="#D9D9D9" />
 
                 <Button
                     android:id="@+id/btn_upload"
-                    android:background="#4F4F4F"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginEnd="30dp"
-                    android:textColor="@color/white"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#4F4F4F"
                     android:text="UPLOAD"
-                    android:layout_height="wrap_content">
+                    android:textColor="@color/white">
 
                 </Button>
 
 
-
                 <TextView
                     style="@style/text_size_0"
-                    android:textAlignment="textStart"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
-                    android:text="Repetition:"/>
+                    android:layout_marginTop="10dp"
+                    android:text="Repetition:"
+                    android:textAlignment="textStart" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_repetition"
                     style="@style/edit_text_outlined_gray"
-                    android:paddingLeft="10dp"
                     android:layout_gravity="center_horizontal"
+                    android:paddingLeft="10dp"
                     android:tooltipText="Username" />
+
                 <TextView
                     style="@style/text_size_0"
-                    android:textAlignment="textStart"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
-                    android:text="Hold:"/>
+                    android:layout_marginTop="10dp"
+                    android:text="Hold:"
+                    android:textAlignment="textStart" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_hold"
                     style="@style/edit_text_outlined_gray"
-                    android:paddingLeft="10dp"
                     android:layout_gravity="center_horizontal"
+                    android:paddingLeft="10dp"
                     android:tooltipText="Username" />
+
                 <TextView
                     style="@style/text_size_0"
-                    android:textAlignment="textStart"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
-                    android:text="Complete:"/>
+                    android:layout_marginTop="10dp"
+                    android:text="Complete:"
+                    android:textAlignment="textStart" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_complete"
                     style="@style/edit_text_outlined_gray"
-                    android:paddingLeft="10dp"
                     android:layout_gravity="center_horizontal"
+                    android:paddingLeft="10dp"
                     android:tooltipText="Username" />
+
                 <TextView
                     style="@style/text_size_0"
-                    android:textAlignment="textStart"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
-                    android:text="Link:"/>
+                    android:layout_marginTop="10dp"
+                    android:text="Link:"
+                    android:textAlignment="textStart" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_link"
                     style="@style/edit_text_outlined_gray"
-                    android:paddingLeft="10dp"
                     android:layout_gravity="center_horizontal"
+                    android:paddingLeft="10dp"
                     android:tooltipText="Username" />
+
                 <TextView
                     style="@style/text_size_0"
-                    android:textAlignment="textStart"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
-                    android:text="Therapist’s Notes:"/>
+                    android:layout_marginTop="10dp"
+                    android:text="Therapist’s Notes:"
+                    android:textAlignment="textStart" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_notes"
                     style="@style/edit_text_outlined_gray"
-                    android:paddingTop="10dp"
-                    android:paddingLeft="10dp"
                     android:layout_height="200dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="top|start"
-                    android:layout_marginBottom="40dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
                     android:tooltipText="Username" />
+
+                <TextView
+                    style="@style/text_size_0"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Schedule:"
+                    android:textAlignment="textStart" />
+
+                <LinearLayout
+                    style="@style/linear_layout_horizontal"
+                    android:layout_marginBottom="40dp"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/btn_date"
+                        style="@style/text_size_1"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edit_text_background_gray"
+                        android:text="SET DATE"
+                        android:elevation="0dp"
+                        android:textColor="@color/black"
+                        android:textSize="11sp">
+
+                    </Button>
+
+                    <Button
+                        android:id="@+id/btn_time"
+                        style="@style/text_size_1"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:elevation="0dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edit_text_background_gray"
+                        android:text="SET TIME"
+                        android:textColor="@color/black"
+                        android:textSize="11sp">
+
+                    </Button>
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -153,19 +198,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <Button
                     android:id="@+id/btn_add"
-                    android:background="@color/header"
-                    android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="SUBMIT"/>
+                    android:background="@color/header"
+                    android:text="SUBMIT"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 
         </LinearLayout>
-
-
 
     </ScrollView>
 

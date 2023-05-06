@@ -36,6 +36,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sklerbidi.therapistmobileapp.ActivityNavigation;
+import com.sklerbidi.therapistmobileapp.CustomClass.Util;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
 
@@ -110,6 +111,13 @@ public class PMenuTherapySession extends Fragment {
             add_therapist.startAnimation(slideInAnim);
             add_therapist.setVisibility(View.VISIBLE);
             tv_return.setVisibility(View.VISIBLE);
+
+            Util.checkAndUpdateManualStatus(databaseReference, ActivityNavigation.user_code, "manual_add_therapist", isManualEnabled -> {
+                boolean showManual = !isManualEnabled;
+                if(showManual){
+                    manual2();
+                }
+            });
 
         });
 
@@ -332,6 +340,46 @@ public class PMenuTherapySession extends Fragment {
             capitalizedString.append(word.substring(0, 1).toUpperCase() + word.substring(1) + " ");
         }
         return capitalizedString.toString().trim();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Util.checkAndUpdateManualStatus(databaseReference, ActivityNavigation.user_code, "manual_therapists", isManualEnabled -> {
+            boolean showManual = !isManualEnabled;
+            if(showManual){
+                manual();
+            }
+        });
+    }
+
+    public void manual(){
+        if (getView() != null) {
+            getView().post(() -> {
+                if (getContext() != null && getActivity() != null) {
+                    String[] messages = new String[]{"Welcome to your personal team of therapists! Here's a list of all your amazing therapists.",
+                            "You can add a new one by simply clicking the adorable floating button below."};
+                    int[] gravities = new int[]{Gravity.CENTER, Gravity.BOTTOM};
+                    int count = 2;
+
+                    Util.createPopUpWindows(getContext(), (ViewGroup) getView(), messages, gravities, count);
+                }
+            });
+        }
+    }
+
+    public void manual2(){
+        if (getView() != null) {
+            getView().post(() -> {
+                if (getContext() != null && getActivity() != null) {
+                    String[] messages = new String[]{"Want to add your therapist to the list? Simply enter the top-secret code they gave you, and voila! You're all set!"};
+                    int[] gravities = new int[]{Gravity.BOTTOM};
+                    int count = 1;
+
+                    Util.createPopUpWindows(getContext(), (ViewGroup) getView(), messages, gravities, count);
+                }
+            });
+        }
     }
 
     private void findView(View view) {

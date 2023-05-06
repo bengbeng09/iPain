@@ -5,15 +5,24 @@ This class is responsible for displaying the UI of the guest feature, and provid
 
 package com.sklerbidi.therapistmobileapp.Guest;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.sklerbidi.therapistmobileapp.ActivityNavigation;
 import com.sklerbidi.therapistmobileapp.CustomClass.DBHelper;
+import com.sklerbidi.therapistmobileapp.CustomClass.Util;
 import com.sklerbidi.therapistmobileapp.LoginRegister.LoginActivity;
 import com.sklerbidi.therapistmobileapp.R;
 
