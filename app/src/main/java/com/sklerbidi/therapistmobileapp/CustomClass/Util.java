@@ -119,6 +119,44 @@ public class Util {
         return sb.toString().trim();
     }
 
+    public static boolean isValidEmail(String email) {
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        return email.matches(emailPattern);
+    }
+
+    public static String formatPhoneNumberToPHAreaCode(String phoneNumber) {
+
+        if(phoneNumber == null || phoneNumber.trim().equals("")){
+            return null;
+        }
+
+        // Remove all non-digit characters from the phone number
+        String digitsOnly = phoneNumber.replaceAll("\\D", "");
+
+        // If the phone number is less than 10 digits, return it as is
+        if (digitsOnly.length() < 10) {
+            return null;
+        }
+
+        // If the phone number starts with the Philippine country code, remove it
+        if (digitsOnly.startsWith("63")) {
+            digitsOnly = digitsOnly.substring(1);
+        }
+
+        // Get the first 4 digits of the phone number, which is the area code
+        String areaCode = digitsOnly.substring(0, 4);
+
+        // Get the remaining digits of the phone number
+        String remainingDigits = digitsOnly.substring(4);
+
+        // Build the formatted phone number string with the Philippine area code format
+        StringBuilder sb = new StringBuilder();
+        sb.append("+63");
+        sb.append(areaCode.substring(1));
+        sb.append(remainingDigits);
+        return sb.toString();
+    }
+
     public static void checkAndUpdateManualStatus(DatabaseReference databaseReference, String userCode, String manualToCheck, OnManualStatusCheckedListener listener) {
         databaseReference.child("users").child(userCode).child("manual").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

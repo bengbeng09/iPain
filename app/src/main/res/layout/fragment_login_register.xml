@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,7 +32,7 @@
             <TextView
                 style="@style/text_size_2_bold"
                 android:layout_marginBottom="20dp"
-                android:text="SIGN UP" />
+                android:text="ACCOUNT TYPE" />
 
             <TextView
                 style="@style/text_size_1"
@@ -86,7 +87,7 @@
             <TextView
                 style="@style/text_size_2_bold"
                 android:layout_marginBottom="20dp"
-                android:text="SIGN UP" />
+                android:text="PERSONAL DETAILS" />
 
             <TextView
                 style="@style/text_size_0"
@@ -145,20 +146,6 @@
                 android:layout_gravity="center_horizontal"
                 android:tooltipText="Username" />
 
-            <TextView
-                style="@style/text_size_0"
-                android:textAlignment="textStart"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="5dp"
-                android:text="Email Address:"/>
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_email_address"
-                style="@style/edit_text_outlined"
-                android:paddingLeft="10dp"
-                android:layout_gravity="center_horizontal"
-                android:tooltipText="Username" />
-
             <Button
                 style="@style/button"
                 android:layout_gravity="center_horizontal"
@@ -167,8 +154,6 @@
                 android:text="NEXT"/>
 
         </LinearLayout>
-
-
 
     </LinearLayout>
 
@@ -189,7 +174,170 @@
         <TextView
             style="@style/text_size_2_bold"
             android:layout_marginBottom="20dp"
-            android:text="SIGN UP" />
+            android:text="Authentication (2FA)" />
+
+        <TextView
+            style="@style/text_size_0"
+            android:textAlignment="textStart"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:text="Email:"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_email"
+                style="@style/edit_text_outlined"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:paddingLeft="10dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"/>
+
+            <Button
+                android:layout_width="45dp"
+                android:layout_height="35dp"
+                android:layout_weight="0"
+                android:id="@+id/btn_email_otp"
+                android:drawableEnd="@drawable/ic_baseline_send_24"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:paddingEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="?android:attr/selectableItemBackground"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            style="@style/linear_layout_vertical"
+            android:visibility="gone"
+            android:id="@+id/container_email_otp">
+            <TextView
+                style="@style/text_size_0"
+                android:textAlignment="textStart"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="Email one-time password:"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_email_otp"
+                style="@style/edit_text_outlined"
+                android:textAlignment="center"
+                android:maxLength="6"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                style="@style/text_size_0"
+                android:id="@+id/tv_invalid_email_otp"
+                android:visibility="gone"
+                android:textAlignment="textStart"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/red_text"
+                android:text="Entered code is invalid"/>
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/text_size_0"
+            android:textAlignment="textStart"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:text="Mobile Number:"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_mobile"
+                style="@style/edit_text_outlined"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:paddingLeft="10dp"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:layout_gravity="center_horizontal"/>
+
+            <Button
+                android:layout_width="45dp"
+                android:layout_height="35dp"
+                android:layout_weight="0"
+                android:id="@+id/btn_mobile_otp"
+                android:drawableEnd="@drawable/ic_baseline_send_24"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:paddingEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="?android:attr/selectableItemBackground"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            style="@style/linear_layout_vertical"
+            android:visibility="gone"
+            android:id="@+id/container_mobile_otp">
+            <TextView
+                style="@style/text_size_0"
+                android:textAlignment="textStart"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="Mobile one-time password:"/>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_mobile_otp"
+                style="@style/edit_text_outlined"
+                android:textAlignment="center"
+                android:maxLength="6"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                style="@style/text_size_0"
+                android:id="@+id/tv_invalid_mobile_otp"
+                android:visibility="gone"
+                android:textAlignment="textStart"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/red_text"
+                android:text="Entered code is invalid"/>
+
+        </LinearLayout>
+
+        <Button
+            style="@style/button"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:id="@+id/btn_next3"
+            android:text="VERIFY"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/login_5"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            style="@style/button_back"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/btn_back4"/>
+
+        <TextView
+            style="@style/text_size_2_bold"
+            android:layout_marginBottom="20dp"
+            android:text="LOGIN DETAILS" />
 
         <TextView
             style="@style/text_size_0"

@@ -335,8 +335,7 @@ public class MenuDashboard extends Fragment {
                         case "Clinic Patient":
                             // handle for clinic patient
                             messages = new String[]{"Welcome to iPain, " + Util.capitalizeWords(ActivityNavigation.firstname) +  "! ",
-                                    "This is your dashboard, were you can check the number of your pending and completed tasks.",
-                                    "You can also set reminder on pending tasks that will be listed in here."};
+                                    "This is your dashboard, were you can check the number of your pending/completed tasks and set reminder on tasks that will be listed in here."};
                             gravities = new int[]{Gravity.CENTER, Gravity.CENTER, Gravity.BOTTOM};
                             count = 3;
                             break;

@@ -120,7 +120,7 @@ public class DialogForgotPass extends AppCompatDialogFragment {
                     }
                 });
             }else{
-                Toast.makeText(getContext(), "Database Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Enter email", Toast.LENGTH_SHORT).show();
             }
         });
 
